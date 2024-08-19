@@ -22,8 +22,8 @@ html, body {
   flex-direction: column;
   background-color: #fff;
   overflow-x: hidden;
-
-  margin-left: 18px;
+  font-weight: 400;
+  margin-left: 40px;
 }
 
 .mainPage{
@@ -34,7 +34,19 @@ html, body {
 .trackerCard{
   /* border: 1px solid #fff; */
   background-color: #1D1D24;
-  max-width: 291px;
-  height: 362px;
+  max-width: 350px;
+  height: 421px;
   border-radius: 15px;
+}
+
+.trackerImage{
+  /* border: 1px solid #fff; */
+  
+  border-radius: 15px;
+}
+
+.trackerImage img {
+  width: 100%; /* Make the image width fill the container */
+  border-radius: 15px;
+  
 }

@@ -1,46 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './MainPage.module.css';
-import DarkSoulsIII from '@eldenRingImages/darksoulsiii.png';
-
-
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./MainPage.module.css";
+import DarkSoulsIII from "@darkSoulsIIIImages/darksoulsiii.png";
+import Sekrio from "@sekiroImages/sekiro.png";
+import EldenRing from "@eldenRingImages/eldenring.png";
+import LiesOfP from "@liesOfPImages/liesofp.png";
 
 const MainPage = () => {
   const trackers = [
     {
       title: "Dark Souls III",
-      image: "/path/to/dark-souls-iii.jpg",
+      image: DarkSoulsIII,
       releaseDate: "March 24, 2016",
       progress: 100,
-      link: "/dark-souls-iii"
+      link: "/dark-souls-iii",
     },
     {
       title: "Sekiro: Shadows Die Twice",
-      image: "/path/to/sekiro.jpg",
+      image: Sekrio,
       releaseDate: "March 22, 2019",
       progress: 50,
-      link: "/sekiro"
-    },
-    {
-      title: "Lies of P",
-      image: "/path/to/lies-of-p.jpg",
-      releaseDate: "September 19, 2023",
-      progress: 30,
-      link: "/lies-of-p"
+      link: "/sekiro",
     },
     {
       title: "Elden Ring",
-      image: "/path/to/elden-ring.jpg",
+      image: LiesOfP,
       releaseDate: "February 25, 2022",
       progress: 75,
-      link: "/elden-ring"
-    }
+      link: "/elden-ring",
+    },
+    {
+      title: "Lies of P",
+      image: EldenRing,
+      releaseDate: "September 19, 2023",
+      progress: 30,
+      link: "/lies-of-p",
+    },
   ];
 
   return (
     <div className={styles.mainPage}>
       <nav className={styles.navbar}>
-        <div className={styles.logo}> 
+        <div className={styles.logo}>
           <img src="/path/to/your/logo.png" alt="Logo" />
         </div>
         <ul className={styles.navItems}>
@@ -60,9 +61,9 @@ const MainPage = () => {
       </nav>
 
       <h1 className={styles.pageTitle}>Collection</h1>
-      
+
       <div className={styles.trackerList}>
-        {trackers.map(tracker => (
+        {trackers.map((tracker) => (
           <div key={tracker.title} className={styles.trackerCard}>
             <div className={styles.trackerImage}>
               <img src={tracker.image} alt={tracker.title} />
