@@ -1,0 +1,325 @@
+@font-face {
+    font-family: 'Athelas Bold';
+    src: url('../../assets/fonts/Sekiro/Athelas-Bold.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #1C1C1C;
+    color: #DAD4CC;
+    font-family: 'Athelas Bold', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+}
+
+.container {
+    width: 95%;
+    max-width: 600px;
+    margin: 20px auto; /* Added margin to prevent touching the edges */
+    padding: 20px;
+    background-color: #2B3A42;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    color: #E97451;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.bossList {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.bossItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #4A2E24;
+    transition: background-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.bossItem.defeated {
+    background-color: #3A5A40;
+    color: #E97451;
+}
+
+.bossItem:hover {
+    background-color: #4A2E24;
+    transform: scale(1.02);
+}
+
+.bossName {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.bossImage {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #E97451;
+}
+
+.buttonGroup {
+    display: flex;
+    align-items: center;
+}
+
+.countInput {
+    width: 40px;
+    text-align: center;
+    background-color: #2B3A42;
+    color: #DAD4CC;
+    border: 1px solid #4A2E24;
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 5px;
+    transition: background-color 0.3s;
+
+    -moz-appearance: textfield;
+}
+
+.countInput::-webkit-outer-spin-button,
+.countInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.countInput:focus {
+    background-color: #3A5A40;
+}
+
+.button {
+    background-color: #E97451;
+    border: none;
+    color: #1C1C1C;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+    background-color: #FF7B00;
+    transform: translateY(-3px);
+}
+
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.resetButton,
+.resetButton2 {
+    background-color: #7E191B;
+    border: none;
+    color: #DAD4CC;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Athelas Bold', Arial, sans-serif;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.resetButton:hover,
+.resetButton2:hover {
+    background-color: #5D3A58;
+}
+
+.immortalitySeveredButton {
+    background-color: #E97451;
+    border: none;
+    color: #1C1C1C;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Athelas Bold', Arial, sans-serif;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.immortalitySeveredButton:hover {
+    background-color: #FF7B00;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modalContent {
+    background: #2B3A42;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    color: #E97451;
+}
+
+.modalBossImage {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 0px;
+    object-fit: cover;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #DAD4CC;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #FF7B00;
+}
+
+.modal .button {
+    background-color: transparent;
+    border: none;
+    color: #DAD4CC;
+    padding: 10px;
+    font-size: 2em;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.modal .button:hover {
+    color: #FF7B00;
+}
+
+.modal .buttonGroup {
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.modal .countInput {
+    width: 60px;
+    height: 40px;
+    font-size: 1.5em;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+.confirmationModal .modalContent {
+    padding: 20px;
+}
+
+.confirmationModal .modalButton {
+    background-color: #9B2D30;
+    border: none;
+    color: #DAD4CC;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.confirmationModal .modalButton:hover {
+    background-color: #7E191B;
+}
+
+.descriptionText {
+    color: #DAD4CC;
+    margin-top: 10px;
+    font-size: 0.8em;
+    font-family: Arial, sans-serif;
+}
+
+.totalDeaths {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2em;
+    color: #FF7B00;
+}
+
+.titleItems {
+    display: flex;
+    flex-direction: column;
+}
+
+.toggleButton {
+    background-color: #5D3A58;
+    border: none;
+    color: #DAD4CC;
+    padding: 10px 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Athelas Bold', Arial, sans-serif;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.toggleButton:hover {
+    background-color: #3A5A40;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

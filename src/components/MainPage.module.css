@@ -1,0 +1,40 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
+
+.mainPage {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  overflow-x: hidden;
+
+  margin-left: 18px;
+}
+
+.mainPage{
+  background-color: #15151C;
+
+}
+
+.trackerCard{
+  /* border: 1px solid #fff; */
+  background-color: #1D1D24;
+  max-width: 291px;
+  height: 362px;
+  border-radius: 15px;
+}
