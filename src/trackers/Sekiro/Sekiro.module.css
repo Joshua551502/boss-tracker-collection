@@ -18,6 +18,7 @@ body {
 
 .container {
     width: 95%;
+    font-family: 'Athelas Bold', Arial, sans-serif;
     max-width: 600px;
     margin: 20px auto; /* Added margin to prevent touching the edges */
     padding: 20px;

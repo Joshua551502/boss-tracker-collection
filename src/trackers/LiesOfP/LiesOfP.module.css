@@ -30,6 +30,7 @@ body {
     background-color: #1a1a2e; /* Dark blue container background */
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    font-family: 'TitleFont', Arial, sans-serif;
 }
 
 .title {

@@ -23,20 +23,12 @@ html, body {
   background-color: #fff;
   overflow-x: hidden;
   font-weight: 400;
-  margin-left: 40px;
+
 }
 
 .mainPage{
   background-color: #15151C;
 
-}
-
-.trackerCard{
-  /* border: 1px solid #fff; */
-  background-color: #1D1D24;
-  max-width: 350px;
-  height: 421px;
-  border-radius: 15px;
 }
 
 .trackerImage{
@@ -49,4 +41,227 @@ html, body {
   width: 100%; /* Make the image width fill the container */
   border-radius: 15px;
   
+}
+
+.trackerMedia img{
+  height: 15px;
+  margin: 0 8px 0 0;
+  vertical-align: -1px;
+}
+
+.trackerMedia{
+  color: #54545A;
+  font-weight: 500;
+}
+
+.trackerLink{
+  font-family: Inter;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  
+}
+
+.trackerInfo{
+  color: #404045;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.trackerList {
+  border: 1px solid #fff;
+  max-width: calc(95% - 56px); /* Adjust the width based on screen size minus 56px */
+  display: grid;
+  min-width: 370px;
+  margin-left: 130px;
+  box-sizing: border-box;
+ 
+  /* Define grid columns with a fixed width of 350px */
+  grid-template-columns: repeat(auto-fill, 400px);
+  gap: 31px; /* Space between items */
+}
+
+.trackerDetails{
+  /* border: 1px solid #fff; */
+  margin: 16px;
+}
+
+.byText{
+  color: #505050;
+  font-weight: 600;
+}
+
+.trackerCompany img{
+  height: 45px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.trackerTitle{
+  margin: 14px 0;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.pageTitle{
+  margin-left: 130px;
+  margin-top: 60px;
+  font-weight: 500;
+  font-family: inter;
+}
+
+.trackerCardLink {
+  text-decoration: none;
+  color: inherit; /* Inherit the color to prevent default link styling */
+}
+
+.trackerCard {
+  background-color: #1D1D24;
+  max-width: 370px;
+  height: 485px;
+  border-radius: 15px;
+  transition: transform 0.2s ease-in-out; /* Add a hover effect */
+}
+
+.trackerCard:hover {
+  transform: translateY(-5px); /* Move the card up by 10px */
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+
+.trackerImage img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.trackerDetails {
+  margin: 16px;
+}
+
+.trackerMedia img {
+  height: 15px;
+  margin: 0 8px 0 0;
+  vertical-align: -1px;
+}
+
+.trackerMedia {
+  color: #54545A;
+  font-weight: 500;
+}
+
+.trackerLink {
+  font-family: Inter;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.trackerInfo {
+  color: #404045;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.trackerCompany img {
+  height: 45px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.byText {
+  color: #505050;
+  font-weight: 600;
+}
+
+.trackerTitle {
+  margin: 14px 0;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid #fff; */
+  width: 500px;
+  height: 50px;
+  border-radius: 30px;
+  margin-left: 40px;
+  background-color: #1D1D24;
+}
+
+.searchInput {
+  flex-grow: 1;
+  height: 80%; /* Match the height of the container */
+  background-color: #1D1D24;
+  border-radius: 30px;
+  border: none;
+  padding-left: 19px;
+  color: #fff;
+  font-size: 16px;
+  text-indent: 8px;
+  font-weight: 600;
+  font-family: inter;
+  
+  /* border: 1px solid #fff; */
+}
+
+.searchInput::placeholder {
+  color: #404045;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.searchButton {
+  width: 70px;
+  height: 80%; /* Match the height of the container */
+  background-color: #4ABF85;
+  border-radius: 30px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.searchButton:hover {
+  background-color: #3ea06f;
+}
+
+.searchButton img {
+  width: 21px;
+  vertical-align: middle;
+}
+
+.logo{
+  width: 50px;
+  /* border: 1px solid #fff; */
+  margin-left: 40px;
+  background-color: #2C2E32;
+  border-radius: 8px;
+}
+
+.logo img{
+  vertical-align: middle;
+}
+
+.navbar{
+  /* border: 1px solid#fff; */
+  display: flex;
+  margin-top: 40px;
+}
+
+.trackerProgress{
+  background-color: #393941;
+  height: 3px;
+  border-radius: 8px;
+  width: 65%;
+  margin: 10px 0;
+}
+
+.progressText{
+  font-size: 10px;
 }

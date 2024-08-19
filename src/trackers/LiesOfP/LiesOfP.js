@@ -102,6 +102,7 @@ const LiesOfP = () => {
     setDefeatedBosses(storedDefeated);
   }, []);
 
+  
   useEffect(() => {
     localStorage.setItem("deathCounts", JSON.stringify(deathCounts));
   }, [deathCounts]);
