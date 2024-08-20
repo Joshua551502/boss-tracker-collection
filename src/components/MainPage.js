@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./MainPage.module.css";
 
+import { demonSoulsProgress } from "../trackers/DemonSouls/DemonSouls";
 import { liesOfPProgress } from "../trackers/LiesOfP/LiesOfP";
 import { sekiroProgress } from "../trackers/Sekiro/Sekiro";
 import { eldenRingProgress } from "../trackers/EldenRing/EldenRing";
 import { darkSoulsIProgress } from "../trackers/DarkSoulsI/DarkSoulsI";
 import { darkSoulsIIProgress } from "../trackers/DarkSoulsII/DarkSoulsII";
+import { BloodborneProgress } from "../trackers/Bloodborne/Bloodborne";
 import { darkSoulsIIIProgress } from "../trackers/DarkSoulsIII/DarkSoulsIII";
 
-import DemonSouls from "../assets/images/DemonSouls/demonsouls.png"
+import DemonSouls from "../assets/images/DemonSouls/demonsouls.png";
 import DarkSoulsI from "../assets/images/DarkSoulsI/darksoulsi.png";
 import DarkSoulsII from "../assets/images/DarkSoulsII/darksoulsii.png";
 import Bloodborne from "../assets/images/Bloodborne/bloodborne.png";
@@ -25,9 +27,11 @@ import SearchIcon from "../assets/images/MainPage/search-icon.png";
 
 const MainPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [demonSoulsProgressValue, setDemonSoulsProgressValue] = useState(0);
   const [liesOfPProgressValue, setLiesOfPProgressValue] = useState(0);
   const [sekiroProgressValue, setSekiroProgressValue] = useState(0); // State for Sekiro progress
   const [eldenRingProgressValue, setEldenRingProgressValue] = useState(0);
+  const [BloodborneProgressValue, setBloodborneProgressValue] = useState(0);
   const [DarkSoulsIIIProgressValue, setDarkSoulsIIIProgressValue] = useState(0);
   const [DarkSoulsIIProgressValue, setDarkSoulsIIProgressValue] = useState(0);
   const [DarkSoulsIProgressValue, setDarkSoulsIProgressValue] = useState(0);
@@ -38,8 +42,9 @@ const MainPage = () => {
     setEldenRingProgressValue(eldenRingProgress());
     setDarkSoulsIProgressValue(darkSoulsIProgress());
     setDarkSoulsIIProgressValue(darkSoulsIIProgress());
-    setDarkSoulsIIIProgressValue(darkSoulsIIIProgress()); 
-    
+    setDarkSoulsIIIProgressValue(darkSoulsIIIProgress());
+    setBloodborneProgressValue(BloodborneProgress());
+    setDemonSoulsProgressValue(demonSoulsProgress());
   }, []);
 
   const trackers = [
@@ -47,8 +52,8 @@ const MainPage = () => {
       title: "Demon Souls",
       image: DemonSouls,
       releaseDate: "November 12, 2020",
-      progress: DarkSoulsIProgressValue,
-      link: "/dark-souls-i",
+      progress: demonSoulsProgressValue,
+      link: "/demon-souls",
       mediaType: "Game",
       company: "From Software",
       companyLogo: fromSoftwareLogo,
@@ -77,8 +82,8 @@ const MainPage = () => {
       title: "Bloodborne",
       image: Bloodborne,
       releaseDate: "March 24, 2015",
-      progress: DarkSoulsIIIProgressValue,
-      link: "/dark-souls-iii",
+      progress: BloodborneProgressValue,
+      link: "/bloodborne",
       mediaType: "Game",
       company: "From Software",
       companyLogo: fromSoftwareLogo,
@@ -162,7 +167,6 @@ const MainPage = () => {
             </div>
           </div>
         </nav>
-        
       </div>
 
       <div className={styles.contentWrapper}>
@@ -190,15 +194,23 @@ const MainPage = () => {
                   <div className={styles.progressText}>
                     {tracker.progress === 100 ? "Complete" : "Progress"}
                   </div>
-                  <div className={styles.trackerProgress}>
-                    <div
-                      className={styles.progressBar}
-                      style={{
-                        width: `${tracker.progress}%`,
-                        backgroundColor: getProgressBarColor(tracker.progress),
-                      }}
-                    ></div>
+                  <div className={styles.trackerProgressContainer}>
+                    <div className={styles.trackerProgress}>
+                      <div
+                        className={styles.progressBar}
+                        style={{
+                          width: `${Math.floor(tracker.progress)}%`, // Ensures no decimal points
+                          backgroundColor: getProgressBarColor(
+                            tracker.progress
+                          ),
+                        }}
+                      ></div>
+                    </div>
+                    <div className={styles.progressPercentage}>
+                      {Math.floor(tracker.progress)}%
+                    </div>
                   </div>
+
                   <div className={styles.trackerCompany}>
                     <img src={tracker.companyLogo} alt={tracker.company} />
                     <span className={styles.byText}>by</span> {tracker.company}

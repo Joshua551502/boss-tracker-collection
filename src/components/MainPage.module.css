@@ -12,6 +12,56 @@ html, body {
   overflow-x: hidden;
 }
 
+/* Webkit-based browsers */
+::-webkit-scrollbar {
+  width: 8px; /* Adjust the width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1D1D24; /* Match the track color with your dark theme */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #323235; /* Use your accent color for the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  border: 2px solid #1D1D24; /* Add a border to create some spacing from the track */
+  transition: background-color 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #323235; /* Darken the thumb on hover */
+}
+
+/* Firefox scrollbar */
+.scrollbar::-webkit-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #323235 #1D1D24;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background-color: #1D1D24;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #323235;
+  border-radius: 10px;
+}
+
+/* Edge & IE */
+.scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #323235 #1D1D24;
+}
+
+.scrollbar-track {
+  background-color: #1D1D24;
+}
+
+.scrollbar-thumb {
+  background-color: #4ABF85;
+  border-radius: 10px;
+}
 
 
 .mainPage {
@@ -292,14 +342,14 @@ html, body {
 
 }
 
-.sideNav {
+/* .sideNav {
   background-color: #1D1D24;
   width: 63px;
   height: 403px;
   margin-left: 32px;
   margin-top: -1090px;
   border-radius: 15px;
-}
+} */
 
 
 .trackerTitle {
@@ -312,3 +362,38 @@ html, body {
 }
 
 
+
+.trackerProgressContainer {
+  display: flex;
+  align-items: center; /* Aligns the progress bar and percentage value vertically */
+  justify-content: space-between; /* Spaces out the progress bar and percentage value */
+  width: 65%; /* Ensure the container takes up the full width */
+  margin: 10px 0 0;
+  /* border: 1px solid #fff; */
+}
+
+.trackerProgress {
+  background-color: #393941;
+  height: 3.5px;
+  border-radius: 8px;
+  width: calc(100% - 30px); /* Adjusted width to leave space for the percentage */
+  position: relative;
+  margin-top: 0px;
+}
+
+.progressBar {
+  background-color: #4ABF85;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.progressPercentage {
+  font-size: 10px;
+  font-weight: 600;
+  color: #404045; /* Grey color for the text */
+  margin-left: 8px;
+  flex-shrink: 0; /* Prevents the text from shrinking */
+  text-align: right; /* Aligns text to the right */
+  vertical-align: middle;
+  margin-top: -17px;
+}

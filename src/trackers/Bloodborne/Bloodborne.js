@@ -1,71 +1,63 @@
 import React, { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
 import styles from './Bloodborne.module.css';
-import AsylumDemon from "../../assets/images/DarkSoulsI/asylum_demon.jpg";
-import TaurusDemon from "../../assets/images/DarkSoulsI/taurus_demon.jpg";
-import MoonlightButterfly from "../../assets/images/DarkSoulsI/moonlight_butterfly.jpg";
-import BellGargoyle from "../../assets/images/DarkSoulsI/bell_gargoyle.jpg";
-import CapraDemon from "../../assets/images/DarkSoulsI/capra_demon.jpg";
-import GapingDragon from "../../assets/images/DarkSoulsI/gaping_dragon.jpg";
-import ChaosWitchQuelaag from "../../assets/images/DarkSoulsI/chaos_witch_quelaag.jpg";
-import CeaselessDischarge from "../../assets/images/DarkSoulsI/ceaseless_discharge.jpg";
-import StrayDemon from "../../assets/images/DarkSoulsI/stray_demon.jpg";
-import IronGolem from "../../assets/images/DarkSoulsI/iron_golem.jpg";
-import DragonSlayerOrnstein from "../../assets/images/DarkSoulsI/dragon_slayer_ornstein.jpg";
-import ExecutionerSmough from "../../assets/images/DarkSoulsI/executioner_smough.jpg";
-import Pinwheel from "../../assets/images/DarkSoulsI/pinwheel.jpg";
-import SeathTheScaleless from "../../assets/images/DarkSoulsI/seath_the_scaleless.jpg";
-import CrossbreedPriscilla from "../../assets/images/DarkSoulsI/crossbreed_priscilla.jpg";
-import DarkSunGwyndolin from "../../assets/images/DarkSoulsI/dark_sun_gwyndolin.jpg";
-import GreatGreyWolfSif from "../../assets/images/DarkSoulsI/great_grey_wolf_sif.jpg";
-import DemonFiresage from "../../assets/images/DarkSoulsI/demon_firesage.jpg";
-import CentipedeDemon from "../../assets/images/DarkSoulsI/centipede_demon.jpg";
-import BedOfChaos from "../../assets/images/DarkSoulsI/bed_of_chaos.jpg";
-import FourKings from "../../assets/images/DarkSoulsI/four_kings.jpg";
-import GravelordNito from "../../assets/images/DarkSoulsI/gravelord_nito.jpg";
-import SanctuaryGuardian from "../../assets/images/DarkSoulsI/sanctuary_guardian.jpg";
-import KnightArtorias from "../../assets/images/DarkSoulsI/knight_artorias.jpg";
-import BlackDragonKalameet from "../../assets/images/DarkSoulsI/black_dragon_kalameet.jpg";
-import ManusFatherOfTheAbyss from "../../assets/images/DarkSoulsI/manus_father_of_the_abyss.jpg";
-import GwynLordOfCinder from "../../assets/images/DarkSoulsI/gwyn_lord_of_cinder.jpg";
+import ClericBeast from "../../assets/images/Bloodborne/cleric_beast.jpg";
+import FatherGascoigne from "../../assets/images/Bloodborne/father_gascoigne.jpg";
+import BloodStarvedBeast from "../../assets/images/Bloodborne/blood_starved_beast.jpg";
+import WitchOfHemwick from "../../assets/images/Bloodborne/witch_of_hemwick.jpg";
+import VicarAmelia from "../../assets/images/Bloodborne/vicar_amelia.jpg";
+import ShadowsOfYharnam from "../../assets/images/Bloodborne/shadows_of_yharnam.jpg";
+import Rom from "../../assets/images/Bloodborne/rom.jpg";
+import TheOneReborn from "../../assets/images/Bloodborne/the_one_reborn.jpg";
+import MartyrLogarius from "../../assets/images/Bloodborne/martyr_logarius.jpg";
+import Amygdala from "../../assets/images/Bloodborne/amygdala.jpg";
+import DarkbeastPaarl from "../../assets/images/Bloodborne/darkbeast_paarl.jpg";
+import Micolash from "../../assets/images/Bloodborne/micolash.jpg";
+import CelestialEmissary from "../../assets/images/Bloodborne/celestial_emissary.jpg";
+import Ebrietas from "../../assets/images/Bloodborne/ebrietas.jpg";
+import MergosWetNurse from "../../assets/images/Bloodborne/mergos_wet_nurse.jpg";
+import Gehrman from "../../assets/images/Bloodborne/gehrman.jpg";
+import MoonPresence from "../../assets/images/Bloodborne/moon_presence.jpg";
+import Ludwig from "../../assets/images/Bloodborne/ludwig.jpg";
+import Laurence from "../../assets/images/Bloodborne/laurence.jpg";
+import TheLivingFailures from "../../assets/images/Bloodborne/the_living_failures.jpg";
+import LadyMaria from "../../assets/images/Bloodborne/lady_maria.jpg";
+import OrphanOfKos from "../../assets/images/Bloodborne/orphan_of_kos.jpg";
 import confetti from "canvas-confetti";
 
 const baseGameBosses = [
-  { name: "asylum demon", image: AsylumDemon, emoji: "👹" },
-  { name: "taurus demon", image: TaurusDemon, emoji: "🐂" },
-  { name: "moonlight butterfly", image: MoonlightButterfly, emoji: "🦋" },
-  { name: "bell gargoyle", image: BellGargoyle, emoji: "🔔" },
-  { name: "capra demon", image: CapraDemon, emoji: "👹" },
-  { name: "gaping dragon", image: GapingDragon, emoji: "🐉" },
-  { name: "chaos witch quelaag", image: ChaosWitchQuelaag, emoji: "🔥" },
-  { name: "ceaseless discharge", image: CeaselessDischarge, emoji: "💧" },
-  { name: "stray demon", image: StrayDemon, emoji: "👹" },
-  { name: "iron golem", image: IronGolem, emoji: "🦾" },
-  { name: "dragon slayer ornstein", image: DragonSlayerOrnstein, emoji: "🗡️" },
-  { name: "executioner smough", image: ExecutionerSmough, emoji: "⚔️" },
-  { name: "pinwheel", image: Pinwheel, emoji: "🎭" },
-  { name: "seath the scaleless", image: SeathTheScaleless, emoji: "🐉" },
-  { name: "crossbreed priscilla", image: CrossbreedPriscilla, emoji: "❄️" },
-  { name: "dark sun gwyndolin", image: DarkSunGwyndolin, emoji: "🌕" },
-  { name: "great grey wolf sif", image: GreatGreyWolfSif, emoji: "🐺" },
-  { name: "demon firesage", image: DemonFiresage, emoji: "🔥" },
-  { name: "centipede demon", image: CentipedeDemon, emoji: "🐍" },
-  { name: "bed of chaos", image: BedOfChaos, emoji: "🔥" },
-  { name: "four kings", image: FourKings, emoji: "👑" },
-  { name: "gravelord nito", image: GravelordNito, emoji: "💀" }
+  { name: "Cleric Beast", image: ClericBeast, emoji: "🦍" },
+  { name: "Father Gascoigne", image: FatherGascoigne, emoji: "👨‍⚕️" },
+  { name: "Blood-starved Beast", image: BloodStarvedBeast, emoji: "🧛" },
+  { name: "The Witch of Hemwick", image: WitchOfHemwick, emoji: "🧙‍♀️" },
+  { name: "Vicar Amelia", image: VicarAmelia, emoji: "🦌" },
+  { name: "Shadows of Yharnam", image: ShadowsOfYharnam, emoji: "👥" },
+  { name: "Rom, the Vacuous Spider", image: Rom, emoji: "🕷️" },
+  { name: "The One Reborn", image: TheOneReborn, emoji: "👹" },
+  { name: "Martyr Logarius", image: MartyrLogarius, emoji: "⚰️" },
+  { name: "Amygdala", image: Amygdala, emoji: "🧠" },
+  { name: "Darkbeast Paarl", image: DarkbeastPaarl, emoji: "⚡" },
+  { name: "Micolash, Host of the Nightmare", image: Micolash, emoji: "🎭" },
+  { name: "Celestial Emissary", image: CelestialEmissary, emoji: "👽" },
+  { name: "Ebrietas, Daughter of the Cosmos", image: Ebrietas, emoji: "🐙" },
+  { name: "Mergo's Wet Nurse", image: MergosWetNurse, emoji: "🧚‍♀️" },
+  { name: "Gehrman, The First Hunter", image: Gehrman, emoji: "💀" },
+  { name: "Moon Presence", image: MoonPresence, emoji: "🌕" },
 ];
 
 const dlcBosses = [
-  { name: "sanctuary guardian", image: SanctuaryGuardian, emoji: "🛡️" },
-  { name: "knight artorias", image: KnightArtorias, emoji: "⚔️" },
-  { name: "black dragon kalameet", image: BlackDragonKalameet, emoji: "🐉" },
-  { name: "manus, father of the abyss", image: ManusFatherOfTheAbyss, emoji: "🌑" },
-  { name: "gwyn, lord of cinder", image: GwynLordOfCinder, emoji: "🔥" }
+  { name: "Ludwig the Accursed/Holy Blade", image: Ludwig, emoji: "🗡️" },
+  { name: "Laurence, the First Vicar", image: Laurence, emoji: "🔥" },
+  { name: "The Living Failures", image: TheLivingFailures, emoji: "👾" },
+  { name: "Lady Maria of the Astral Clocktower", image: LadyMaria, emoji: "🕰️" },
+  { name: "Orphan of Kos", image: OrphanOfKos, emoji: "🌊" }
 ];
+
+
 const Bloodborne = () => {
-  const [deathCounts, setDeathCounts] = useState(() => JSON.parse(Cookies.get("darkSoulsIDeathCounts") || "{}"));
-  const [dlcDeathCounts, setDlcDeathCounts] = useState(() => JSON.parse(Cookies.get("darkSoulsIDlcDeathCounts") || "{}"));
-  const [defeatedBosses, setDefeatedBosses] = useState(() => JSON.parse(Cookies.get("darkSoulsIDefeatedBosses") || "[]"));
+  const [deathCounts, setDeathCounts] = useState(() => JSON.parse(Cookies.get("bloodborneDeathCounts") || "{}"));
+  const [dlcDeathCounts, setDlcDeathCounts] = useState(() => JSON.parse(Cookies.get("bloodborneDlcDeathCounts") || "{}"));
+  const [defeatedBosses, setDefeatedBosses] = useState(() => JSON.parse(Cookies.get("bloodborneDefeatedBosses") || "[]"));
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBoss, setSelectedBoss] = useState(null);
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
@@ -75,15 +67,15 @@ const Bloodborne = () => {
   const modalRef = useRef(null);
 
   useEffect(() => {
-    Cookies.set("darkSoulsIDeathCounts", JSON.stringify(deathCounts), { expires: 365 });
+    Cookies.set("bloodborneDeathCounts", JSON.stringify(deathCounts), { expires: 365 });
   }, [deathCounts]);
 
   useEffect(() => {
-    Cookies.set("darkSoulsIDlcDeathCounts", JSON.stringify(dlcDeathCounts), { expires: 365 });
+    Cookies.set("bloodborneDlcDeathCounts", JSON.stringify(dlcDeathCounts), { expires: 365 });
   }, [dlcDeathCounts]);
 
   useEffect(() => {
-    Cookies.set("darkSoulsIDefeatedBosses", JSON.stringify(defeatedBosses), { expires: 365 });
+    Cookies.set("bloodborneDefeatedBosses", JSON.stringify(defeatedBosses), { expires: 365 });
   }, [defeatedBosses]);
 
   const handleVictoryAchieved = () => {
@@ -222,13 +214,13 @@ const Bloodborne = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>
         {isDlc
-          ? "DARK SOULS I DLC BOSS TRACKER"
-          : "DARK SOULS I BOSS TRACKER"}
+          ? "The Old Hunters"
+          : "Bloodborne Boss Tracker"}
       </h1>
 
       <div className={styles.titleItems}>
         <button className={styles.toggleButton} onClick={() => setIsDlc(!isDlc)}>
-          {isDlc ? "BASE GAME BOSSES" : "DLC BOSSES"}
+          {isDlc ? "BASE GAME BOSSES" : "THE OLD HUNTERS"}
         </button>
       </div>
       <ul className={styles.bossList}>
@@ -342,8 +334,8 @@ const Bloodborne = () => {
               onClick={handleVictoryAchieved}
             >
               {defeatedBosses.includes(selectedBoss.name)
-                ? 'UNDO VICTORY ACHIEVED'
-                : 'VICTORY ACHIEVED'}
+                ? 'UNDO PREY SLAUGHTERED'
+                : 'PREY SLAUGHTERED'}
             </button>
             <button className={styles.resetButton2} onClick={openResetModal}>
               RESET
@@ -389,7 +381,7 @@ const Bloodborne = () => {
 };
 
 // Export the progress calculation for use in the main page
-export const darkSoulsIProgress = () => {
+export const BloodborneProgress = () => {
   const storedDefeated = JSON.parse(Cookies.get("bloodborneDefeatedBosses") || "[]");
   const totalBosses = baseGameBosses.length + dlcBosses.length;
   return (storedDefeated.length / totalBosses) * 100;

@@ -1,42 +1,37 @@
 @font-face {
-    font-family: 'AugustaShadow';
-    src: url('../../assets/fonts/Bloodborne/Augusta-Shadow.ttf') format('opentype');
+    font-family: 'BernhardBold';
+    src: url('../../assets/fonts/DemonSouls/Bernhard\ Modern\ Bold\ BT.ttf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Augusta';
-    src: url('../../assets/fonts/Bloodborne/Augusta.ttf') format('opentype');
+    font-family: 'Bernhard';
+    src: url('../../assets/fonts/DemonSouls/Bernhard\ Modern\ BT.ttf') format('opentype');
     font-weight: normal;
     font-style: normal;
-}
-
-@font-face {
-    font-family: 'FleshAndBlood';
-    src: url('../../assets/fonts/Bloodborne/Fleshandblood-MVA5x.ttf');
 }
 
 body {
-    background-color: #1c1b1a; /* Yharnam Night */
-    color: #b1a48b; /* Moonlit Ash */
-    font-family: 'FleshAndBlood', Arial, sans-serif;
+    background-color: #0a0a0e; /* Abyssal Midnight */
+    color: #e0dacd; /* Pale Phantom */
+    font-family: 'BernhardBold', Arial, sans-serif;
 }
 
 .container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #292724; /* Forbidden Shadows */
+    background-color: #282a36; /* Obsidian */
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-    font-family: 'FleshAndBlood', Arial, sans-serif;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    font-family: 'Bernhard', Arial, sans-serif;
 }
 
 .title {
     text-align: center;
-    color: #8c7151; /* Old Blood */
-    font-family: 'FleshAndBlood', Arial, sans-serif;
+    color: #cda966; /* Royal Gold */
+    font-family: 'BernhardBold', Arial, sans-serif;
 }
 
 .bossList {
@@ -49,18 +44,18 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #3c2e1f; /* Weathered Leather */
+    border-bottom: 1px solid #514839; /* Worn Bronze */
     transition: background-color 0.2s;
     cursor: pointer;
 }
 
 .bossItem.defeated {
-    background-color: #3a3530; /* Graveyard Soil */
-    color: #8c7151; /* Old Blood */
+    background-color: #3d4149; /* Ashen Gray */
+    color: #cda966; /* Royal Gold */
 }
 
 .bossItem:hover {
-    background-color: #4a3f36; /* Eerie Wood */
+    background-color: #634d3c; /* Embered Brown */
 }
 
 .bossName {
@@ -75,7 +70,7 @@ body {
     margin-right: 10px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #3c2e1f; /* Weathered Leather */
+    border: 2px solid #514839; /* Worn Bronze */
 }
 
 .buttonGroup {
@@ -86,9 +81,9 @@ body {
 .countInput {
     width: 40px;
     text-align: center;
-    background-color: #292724; /* Forbidden Shadows */
-    color: #b1a48b; /* Moonlit Ash */
-    border: 1px solid #3c2e1f; /* Weathered Leather */
+    background-color: #282a36; /* Obsidian */
+    color: #e0dacd; /* Pale Phantom */
+    border: 1px solid #514839; /* Worn Bronze */
     border-radius: 5px;
     margin: 0 5px;
     padding: 5px;
@@ -102,7 +97,7 @@ body {
 }
 
 .button {
-    background-color: #8c7151; /* Old Blood */
+    background-color: #cda966; /* Royal Gold */
     border: none;
     color: #000;
     padding: 5px 10px;
@@ -113,7 +108,7 @@ body {
 }
 
 .button:hover {
-    background-color: #9d8265; /* Brightened Blood */
+    background-color: #dcb278; /* Brighter Gold */
 }
 
 .button:disabled {
@@ -124,25 +119,13 @@ body {
 .resetButtonContainer {
     position: relative;
     width: 100%;
+ 
 }
 
-.resetButton {
-    background-color: #5b2b2b; /* Beast's Blood */
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    margin: 20px 0;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-family: 'Mantinia Regular', Arial, sans-serif;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
 
+.resetButton,
 .resetButton2 {
-    background-color: #5b2b2b; /* Beast's Blood */
+    background-color: #962d2d; /* Cursed Blood */
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -151,18 +134,23 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s;
     font-family: 'Mantinia Regular', Arial, sans-serif;
-    position: relative;
+    border: 1px solid #fff;
 }
-
-.resetButton:hover {
-    background-color: #7b3636; /* Frenzied Blood */
+.resetButton {
+    
+    display: block;
+    margin: 0 auto;
+}
+.resetButton:hover,
+.resetButton2:hover {
+    background-color: #b73838; /* Darker Blood */
 }
 
 .immortalitySeveredButton,
 .victoryAchievedButton {
-    background-color: #8c7151; /* Old Blood */
+    background-color: #cda966; /* Royal Gold */
     border: none;
-    color: #000;
+    color: #fff;
     padding: 10px 20px;
     margin: 20px 0 -5px;
     cursor: pointer;
@@ -172,11 +160,12 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid #fff;
 }
 
 .immortalitySeveredButton:hover,
 .victoryAchievedButton:hover {
-    background-color: #9d8265; /* Brightened Blood */
+    background-color: #dcb278; /* Brighter Gold */
 }
 
 .modal {
@@ -204,14 +193,14 @@ body {
 }
 
 .modalContent {
-    background: #292724; /* Forbidden Shadows */
+    background: #282a36; /* Obsidian */
     padding: 30px;
     border-radius: 10px;
     text-align: center;
     position: relative;
     width: 80%;
     max-width: 600px;
-    color: #8c7151; /* Old Blood */
+    color: #cda966; /* Royal Gold */
 }
 
 .modalBossImage {
@@ -227,7 +216,7 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    color: #b1a48b; /* Moonlit Ash */
+    color: #e0dacd; /* Pale Phantom */
     font-size: 24px;
     cursor: pointer;
 }
@@ -235,7 +224,7 @@ body {
 .modal .button {
     background-color: transparent;
     border: none;
-    color: #b1a48b; /* Moonlit Ash */
+    color: #e0dacd; /* Pale Phantom */
     padding: 10px;
     font-size: 2em;
     cursor: pointer;
@@ -243,7 +232,7 @@ body {
 }
 
 .modal .button:hover {
-    color: #8c7151; /* Old Blood */
+    color: #cda966; /* Royal Gold */
 }
 
 .modal .buttonGroup {
@@ -264,7 +253,7 @@ body {
 }
 
 .confirmationModal .modalButton {
-    background-color: #8c7151; /* Old Blood */
+    background-color: #cda966; /* Royal Gold */
     border: none;
     color: #000;
     padding: 10px 20px;
@@ -275,7 +264,7 @@ body {
 }
 
 .confirmationModal .modalButton:hover {
-    background-color: #9d8265; /* Brightened Blood */
+    background-color: #dcb278; /* Brighter Gold */
 }
 
 .countInput {
@@ -283,7 +272,7 @@ body {
 }
 
 .descriptionText {
-    color: #b1a48b; /* Moonlit Ash */
+    color: #e0dacd; /* Pale Phantom */
     margin-top: 10px;
     font-size: 0.8em;
     font-family: Arial, sans-serif;
@@ -293,11 +282,11 @@ body {
     text-align: center;
     margin: 20px 0;
     font-size: 1.2em;
-    color: #8c7151; /* Old Blood */
+    color: #cda966; /* Royal Gold */
 }
 
 .toggleButton {
-    background-color: #5b2b2b; /* Beast's Blood */
+    background-color: #962d2d; /* Cursed Blood */
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -312,7 +301,7 @@ body {
 }
 
 .toggleButton:hover {
-    background-color: #7b3636; /* Frenzied Blood */
+    background-color: #b73838; /* Darker Blood */
 }
 
 .titleItems {
