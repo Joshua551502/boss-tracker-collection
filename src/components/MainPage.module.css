@@ -23,7 +23,7 @@ html, body {
   background-color: #fff;
   overflow-x: hidden;
   font-weight: 400;
-  
+  color: #fff;
 }
 
 .mainPage{
@@ -79,8 +79,10 @@ html, body {
  
   /* Define grid columns with a fixed width of 350px */
   grid-template-columns: repeat(auto-fill, 400px);
-  gap: 31px; /* Space between items */
+  gap: 21px; /* Space between items */
+  row-gap: 40px;
   margin-bottom: 30px;
+  
 }
 
 .trackerDetails{
@@ -270,7 +272,7 @@ html, body {
 
 .trackerProgress {
   background-color: #393941;
-  height: 3px;
+  height: 3.5px;
   border-radius: 8px;
   width: 65%;
   margin: 10px 0 16px;
@@ -290,12 +292,23 @@ html, body {
 
 }
 
-.sideNav{
-  position:fixed;
+.sideNav {
   background-color: #1D1D24;
   width: 63px;
   height: 403px;
   margin-left: 32px;
-  margin-top: 65px;
+  margin-top: -1090px;
   border-radius: 15px;
 }
+
+
+.trackerTitle {
+  margin: 14px 0;
+  font-weight: 600;
+  font-size: 20px;
+  white-space: nowrap; /* Prevents the text from wrapping to the next line */
+  overflow: hidden; /* Ensures that the overflowed text is hidden */
+  text-overflow: ellipsis; /* Adds the "..." continuation */
+}
+
+

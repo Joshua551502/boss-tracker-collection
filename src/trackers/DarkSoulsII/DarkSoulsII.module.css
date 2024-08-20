@@ -13,8 +13,8 @@
 }
 
 body {
-    background-color: #0b0c0d; /* Abyssal Black */
-    color: #d3c6aa; /* Undead Bone */
+    background-color: #2f2f2f; /* Abyss Black */
+    color: #e1d6b8; /* Faded Ivory */
     font-family: 'OptimusPrinceps', Arial, sans-serif;
 }
 
@@ -22,14 +22,14 @@ body {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #1e1e1e; /* Hollow Gray */
+    background-color: #3b3b3b; /* Ancient Gray */
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
 
 .title {
     text-align: center;
-    color: #a69257; /* Ancient Gold */
+    color: #a58c47; /* Tarnished Gold */
     font-family: 'OptimusPrincepsSemiBold', Arial, sans-serif;
 }
 
@@ -43,18 +43,18 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #3b2710; /* Darkened Bronze */
+    border-bottom: 1px solid #534a32; /* Old Bronze */
     transition: background-color 0.2s;
     cursor: pointer;
 }
 
 .bossItem.defeated {
-    background-color: #343a40; /* Unlit Bonfire */
-    color: #a69257; /* Ancient Gold */
+    background-color: #4e5a44; /* Faded Moss */
+    color: #a58c47; /* Tarnished Gold */
 }
 
 .bossItem:hover {
-    background-color: #4b3621; /* Charred Wood */
+    background-color: #615344; /* Ancient Bronze */
 }
 
 .bossName {
@@ -69,7 +69,7 @@ body {
     margin-right: 10px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #3b2710; /* Darkened Bronze */
+    border: 2px solid #534a32; /* Old Bronze */
 }
 
 .buttonGroup {
@@ -80,9 +80,9 @@ body {
 .countInput {
     width: 40px;
     text-align: center;
-    background-color: #1e1e1e; /* Hollow Gray */
-    color: #d3c6aa; /* Undead Bone */
-    border: 1px solid #3b2710; /* Darkened Bronze */
+    background-color: #3b3b3b; /* Ancient Gray */
+    color: #e1d6b8; /* Faded Ivory */
+    border: 1px solid #534a32; /* Old Bronze */
     border-radius: 5px;
     margin: 0 5px;
     padding: 5px;
@@ -96,9 +96,9 @@ body {
 }
 
 .button {
-    background-color: #a69257; /* Ancient Gold */
+    background-color: #a58c47; /* Tarnished Gold */
     border: none;
-    color: #000;
+    color: #2f2f2f; /* Abyss Black */
     padding: 5px 10px;
     margin: 0 5px;
     cursor: pointer;
@@ -107,7 +107,7 @@ body {
 }
 
 .button:hover {
-    background-color: #bba469; /* Brighter Gold */
+    background-color: #c2a65d; /* Sunlit Gold */
 }
 
 .button:disabled {
@@ -121,9 +121,9 @@ body {
 }
 
 .resetButton {
-    background-color: #6b0d0d; /* Bloodshade Red */
+    background-color: #7b2222; /* Dried Blood */
     border: none;
-    color: #fff;
+    color: #e1d6b8; /* Faded Ivory */
     padding: 10px 20px;
     margin: 20px 0;
     cursor: pointer;
@@ -136,9 +136,9 @@ body {
 }
 
 .resetButton2 {
-    background-color: #6b0d0d; /* Bloodshade Red */
+    background-color: #7b2222; /* Dried Blood */
     border: none;
-    color: #fff;
+    color: #e1d6b8; /* Faded Ivory */
     padding: 10px 20px;
     margin: 20px 0;
     cursor: pointer;
@@ -149,14 +149,14 @@ body {
 }
 
 .resetButton:hover {
-    background-color: #8a1919; /* Crimson */
+    background-color: #953434; /* Old Blood */
 }
 
 .immortalitySeveredButton,
 .victoryAchievedButton {
-    background-color: #a69257; /* Ancient Gold */
+    background-color: #a58c47; /* Tarnished Gold */
     border: none;
-    color: #000;
+    color: #2f2f2f; /* Abyss Black */
     padding: 10px 20px;
     margin: 20px 0 -5px;
     cursor: pointer;
@@ -170,7 +170,7 @@ body {
 
 .immortalitySeveredButton:hover,
 .victoryAchievedButton:hover {
-    background-color: #bba469; /* Brighter Gold */
+    background-color: #c2a65d; /* Sunlit Gold */
 }
 
 .modal {
@@ -179,7 +179,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -198,14 +198,14 @@ body {
 }
 
 .modalContent {
-    background: #1e1e1e; /* Hollow Gray */
+    background: #3b3b3b; /* Ancient Gray */
     padding: 30px;
     border-radius: 10px;
     text-align: center;
     position: relative;
     width: 80%;
     max-width: 600px;
-    color: #a69257; /* Ancient Gold */
+    color: #a58c47; /* Tarnished Gold */
 }
 
 .modalBossImage {
@@ -221,7 +221,7 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    color: #d3c6aa; /* Undead Bone */
+    color: #e1d6b8; /* Faded Ivory */
     font-size: 24px;
     cursor: pointer;
 }
@@ -229,7 +229,7 @@ body {
 .modal .button {
     background-color: transparent;
     border: none;
-    color: #d3c6aa; /* Undead Bone */
+    color: #e1d6b8; /* Faded Ivory */
     padding: 10px;
     font-size: 2em;
     cursor: pointer;
@@ -237,7 +237,7 @@ body {
 }
 
 .modal .button:hover {
-    color: #a69257; /* Ancient Gold */
+    color: #a58c47; /* Tarnished Gold */
 }
 
 .modal .buttonGroup {
@@ -258,9 +258,9 @@ body {
 }
 
 .confirmationModal .modalButton {
-    background-color: #a69257; /* Ancient Gold */
+    background-color: #a58c47; /* Tarnished Gold */
     border: none;
-    color: #000;
+    color: #2f2f2f; /* Abyss Black */
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
@@ -269,7 +269,7 @@ body {
 }
 
 .confirmationModal .modalButton:hover {
-    background-color: #bba469; /* Brighter Gold */
+    background-color: #c2a65d; /* Sunlit Gold */
 }
 
 .countInput {
@@ -277,7 +277,7 @@ body {
 }
 
 .descriptionText {
-    color: #d3c6aa; /* Undead Bone */
+    color: #e1d6b8; /* Faded Ivory */
     margin-top: 10px;
     font-size: 0.8em;
     font-family: Arial, sans-serif;
@@ -287,13 +287,13 @@ body {
     text-align: center;
     margin: 20px 0;
     font-size: 1.2em;
-    color: #a69257; /* Ancient Gold */
+    color: #a58c47; /* Tarnished Gold */
 }
 
 .toggleButton {
-    background-color: #6b0d0d; /* Bloodshade Red */
+    background-color: #7b2222; /* Dried Blood */
     border: none;
-    color: #fff;
+    color: #e1d6b8; /* Faded Ivory */
     padding: 10px 20px;
     margin: 20px 0;
     cursor: pointer;
@@ -306,7 +306,7 @@ body {
 }
 
 .toggleButton:hover {
-    background-color: #8a1919; /* Crimson */
+    background-color: #953434; /* Old Blood */
 }
 
 .titleItems {

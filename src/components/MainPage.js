@@ -5,10 +5,14 @@ import styles from "./MainPage.module.css";
 import { liesOfPProgress } from "../trackers/LiesOfP/LiesOfP";
 import { sekiroProgress } from "../trackers/Sekiro/Sekiro";
 import { eldenRingProgress } from "../trackers/EldenRing/EldenRing";
-import { darkSoulsIIIProgress } from "../trackers/DarkSoulsIII/DarkSoulsIII";
 import { darkSoulsIProgress } from "../trackers/DarkSoulsI/DarkSoulsI";
+import { darkSoulsIIProgress } from "../trackers/DarkSoulsII/DarkSoulsII";
+import { darkSoulsIIIProgress } from "../trackers/DarkSoulsIII/DarkSoulsIII";
 
+import DemonSouls from "../assets/images/DemonSouls/demonsouls.png"
 import DarkSoulsI from "../assets/images/DarkSoulsI/darksoulsi.png";
+import DarkSoulsII from "../assets/images/DarkSoulsII/darksoulsii.png";
+import Bloodborne from "../assets/images/Bloodborne/bloodborne.png";
 import DarkSoulsIII from "@darkSoulsIIIImages/darksoulsiii.png";
 import Sekiro from "@sekiroImages/sekiro.png";
 import EldenRing from "@eldenRingImages/eldenring.png";
@@ -25,20 +29,24 @@ const MainPage = () => {
   const [sekiroProgressValue, setSekiroProgressValue] = useState(0); // State for Sekiro progress
   const [eldenRingProgressValue, setEldenRingProgressValue] = useState(0);
   const [DarkSoulsIIIProgressValue, setDarkSoulsIIIProgressValue] = useState(0);
+  const [DarkSoulsIIProgressValue, setDarkSoulsIIProgressValue] = useState(0);
   const [DarkSoulsIProgressValue, setDarkSoulsIProgressValue] = useState(0);
 
   useEffect(() => {
     setLiesOfPProgressValue(liesOfPProgress());
     setSekiroProgressValue(sekiroProgress());
     setEldenRingProgressValue(eldenRingProgress());
-    setDarkSoulsIIIProgressValue(darkSoulsIIIProgress()); // Fetch and set the progress value for Elden Ring
+    setDarkSoulsIProgressValue(darkSoulsIProgress());
+    setDarkSoulsIIProgressValue(darkSoulsIIProgress());
+    setDarkSoulsIIIProgressValue(darkSoulsIIIProgress()); 
+    
   }, []);
 
   const trackers = [
     {
-      title: "Dark Souls I",
-      image: DarkSoulsI,
-      releaseDate: "September 22, 2011",
+      title: "Demon Souls",
+      image: DemonSouls,
+      releaseDate: "November 12, 2020",
       progress: DarkSoulsIProgressValue,
       link: "/dark-souls-i",
       mediaType: "Game",
@@ -46,7 +54,37 @@ const MainPage = () => {
       companyLogo: fromSoftwareLogo,
     },
     {
-      title: "Dark Souls III",
+      title: "DARK SOULS™: REMASTERED",
+      image: DarkSoulsI,
+      releaseDate: "May 24, 2018",
+      progress: DarkSoulsIProgressValue,
+      link: "/dark-souls-i",
+      mediaType: "Game",
+      company: "From Software",
+      companyLogo: fromSoftwareLogo,
+    },
+    {
+      title: "DARK SOULS™ II: Scholar of the First Sin",
+      image: DarkSoulsII,
+      releaseDate: "April 1, 2015",
+      progress: DarkSoulsIIProgressValue,
+      link: "/dark-souls-ii",
+      mediaType: "Game",
+      company: "From Software",
+      companyLogo: fromSoftwareLogo,
+    },
+    {
+      title: "Bloodborne",
+      image: Bloodborne,
+      releaseDate: "March 24, 2015",
+      progress: DarkSoulsIIIProgressValue,
+      link: "/dark-souls-iii",
+      mediaType: "Game",
+      company: "From Software",
+      companyLogo: fromSoftwareLogo,
+    },
+    {
+      title: "DARK SOULS™ III",
       image: DarkSoulsIII,
       releaseDate: "March 24, 2016",
       progress: DarkSoulsIIIProgressValue,
@@ -56,7 +94,7 @@ const MainPage = () => {
       companyLogo: fromSoftwareLogo,
     },
     {
-      title: "Sekiro: Shadows Die Twice",
+      title: "Sekiro™: Shadows Die Twice",
       image: Sekiro,
       releaseDate: "March 22, 2019",
       progress: sekiroProgressValue,
@@ -66,7 +104,7 @@ const MainPage = () => {
       companyLogo: fromSoftwareLogo,
     },
     {
-      title: "Elden Ring",
+      title: "ELDEN RING",
       image: EldenRing,
       releaseDate: "February 25, 2022",
       progress: eldenRingProgressValue, // Use the calculated Elden Ring progress
@@ -124,7 +162,7 @@ const MainPage = () => {
             </div>
           </div>
         </nav>
-        <div className={styles.sideNav}></div>
+        
       </div>
 
       <div className={styles.contentWrapper}>
@@ -171,6 +209,7 @@ const MainPage = () => {
           ))}
         </div>
       </div>
+      <div className={styles.sideNav}></div>
     </div>
   );
 };
