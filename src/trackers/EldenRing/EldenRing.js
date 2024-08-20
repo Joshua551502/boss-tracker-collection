@@ -27,7 +27,6 @@ import PromisedConsortRadahn from "@eldenRingImages/promised_consort_radahn.jpg"
 import DraconicTreeSentinel from "@eldenRingImages/draconic_tree_sentinel.jpg";
 import Mogh from "@eldenRingImages/mohg.jpg";
 import Malenia from "@eldenRingImages/malenia.jpg";
-import GoldenOrder from "@eldenRingImages/golden_order_logo.jpg";
 import CrucibleKnight from "@eldenRingImages/crucible_knight.jpg";
 import Magma from "@eldenRingImages/magma.jpg";
 import FallingStar from "@eldenRingImages/falling_star.jpg";
