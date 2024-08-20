@@ -70,7 +70,7 @@ html, body {
 }
 
 .trackerList {
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   max-width: calc(95% - 56px); /* Adjust the width based on screen size minus 56px */
   display: grid;
   min-width: 370px;
@@ -264,4 +264,20 @@ html, body {
 
 .progressText{
   font-size: 10px;
+}
+
+
+.trackerProgress {
+  background-color: #393941;
+  height: 3px;
+  border-radius: 8px;
+  width: 65%;
+  margin: 10px 0;
+  position: relative;
+}
+
+.progressBar {
+  background-color: #4ABF85;
+  height: 100%;
+  border-radius: 8px;
 }

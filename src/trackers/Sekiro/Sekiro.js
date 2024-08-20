@@ -42,47 +42,36 @@ const Sekiro = () => {
   const [isGlobalResetModalOpen, setIsGlobalResetModalOpen] = useState(false);
 
   useEffect(() => {
-    const storedCounts = JSON.parse(localStorage.getItem("deathCounts")) || {};
+    // Initialize state from localStorage
+    const storedCounts = JSON.parse(localStorage.getItem("sekiroDeathCounts")) || {};
+    const storedDefeated = JSON.parse(localStorage.getItem("sekiroDefeatedBosses")) || [];
     setDeathCounts(storedCounts);
-    const storedDefeated = JSON.parse(localStorage.getItem("defeatedBosses")) || [];
     setDefeatedBosses(storedDefeated);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("deathCounts", JSON.stringify(deathCounts));
-  }, [deathCounts]);
-
-  useEffect(() => {
-    localStorage.setItem("defeatedBosses", JSON.stringify(defeatedBosses));
-  }, [defeatedBosses]);
-
-  useEffect(() => {
-    if (isModalOpen || isResetModalOpen || isGlobalResetModalOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("keydown", handleKeyDown);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isModalOpen, isResetModalOpen, isGlobalResetModalOpen]);
+  const updateLocalStorage = (counts, defeated) => {
+    localStorage.setItem("sekiroDeathCounts", JSON.stringify(counts));
+    localStorage.setItem("sekiroDefeatedBosses", JSON.stringify(defeated));
+  };
 
   const adjustCount = (boss, amount) => {
-    setDeathCounts((prevCounts) => ({
-      ...prevCounts,
-      [boss]: (prevCounts[boss] || 0) + amount,
-    }));
+    const newDeathCounts = {
+      ...deathCounts,
+      [boss]: Math.max(0, (deathCounts[boss] || 0) + amount),
+    };
+    setDeathCounts(newDeathCounts);
+    updateLocalStorage(newDeathCounts, defeatedBosses);
   };
 
   const resetCount = (boss) => {
-    setDeathCounts((prevCounts) => ({
-      ...prevCounts,
+    const newDeathCounts = {
+      ...deathCounts,
       [boss]: 0,
-    }));
-    setDefeatedBosses((prev) => prev.filter((b) => b !== boss));
+    };
+    const newDefeatedBosses = defeatedBosses.filter((b) => b !== boss);
+    setDeathCounts(newDeathCounts);
+    setDefeatedBosses(newDefeatedBosses);
+    updateLocalStorage(newDeathCounts, newDefeatedBosses);
   };
 
   const resetAllCounts = () => {
@@ -92,16 +81,39 @@ const Sekiro = () => {
     });
     setDeathCounts(resetCounts);
     setDefeatedBosses([]);
+    updateLocalStorage(resetCounts, []);
     setIsGlobalResetModalOpen(false);
+  };
+
+  const handleVictoryAchieved = (event) => {
+    event.stopPropagation(); // Prevent modal from closing
+    let updatedDefeatedBosses;
+    if (defeatedBosses.includes(selectedBoss.name)) {
+      updatedDefeatedBosses = defeatedBosses.filter(
+        (boss) => boss !== selectedBoss.name
+      );
+    } else {
+      updatedDefeatedBosses = [...defeatedBosses, selectedBoss.name];
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ["#E97451", "#FF7B00", "#DAD4CC", "#7E191B"],
+      });
+    }
+    setDefeatedBosses(updatedDefeatedBosses);
+    updateLocalStorage(deathCounts, updatedDefeatedBosses);
   };
 
   const handleCountChange = (boss, value) => {
     const newValue = parseInt(value, 10);
     if (!isNaN(newValue) && newValue >= 0) {
-      setDeathCounts((prevCounts) => ({
-        ...prevCounts,
+      const newDeathCounts = {
+        ...deathCounts,
         [boss]: newValue,
-      }));
+      };
+      setDeathCounts(newDeathCounts);
+      updateLocalStorage(newDeathCounts, defeatedBosses);
     }
   };
 
@@ -139,43 +151,6 @@ const Sekiro = () => {
     setIsGlobalResetModalOpen(false);
   };
 
-  const handleClickOutside = (event) => {
-    if (event.target.closest(`.${styles.modalContent}`)) {
-      return;
-    }
-    closeModal();
-    closeResetModal();
-    closeGlobalResetModal();
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === " ") {
-      event.preventDefault();
-      if (isModalOpen && selectedBoss) {
-        adjustCount(selectedBoss.name, 1);
-      }
-    } else if (event.key === "d") {
-      event.preventDefault();
-      if (isModalOpen && selectedBoss) {
-        adjustCount(selectedBoss.name, -1);
-      }
-    }
-  };
-
-  const handleImmortalitySevered = () => {
-    if (defeatedBosses.includes(selectedBoss.name)) {
-      setDefeatedBosses((prev) => prev.filter((boss) => boss !== selectedBoss.name));
-    } else {
-      setDefeatedBosses((prev) => [...prev, selectedBoss.name]);
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#E97451', '#FF7B00', '#DAD4CC', '#7E191B'],
-      });
-    }
-  };
-
   const totalDeaths = Object.values(deathCounts).reduce(
     (acc, count) => acc + count,
     0
@@ -188,7 +163,9 @@ const Sekiro = () => {
         {bosses.map((boss) => (
           <li
             key={boss.name}
-            className={`${styles.bossItem} ${defeatedBosses.includes(boss.name) ? styles.defeated : ''}`}
+            className={`${styles.bossItem} ${
+              defeatedBosses.includes(boss.name) ? styles.defeated : ""
+            }`}
             onClick={() => openModal(boss)}
           >
             <span className={styles.bossName}>
@@ -274,11 +251,11 @@ const Sekiro = () => {
             </p>
             <button
               className={styles.immortalitySeveredButton}
-              onClick={handleImmortalitySevered}
+              onClick={handleVictoryAchieved}
             >
               {defeatedBosses.includes(selectedBoss.name)
-                ? 'UNDO IMMORTALITY SEVERED'
-                : 'IMMORTALITY SEVERED'}
+                ? "UNDO IMMORTALITY SEVERED"
+                : "IMMORTALITY SEVERED"}
             </button>
             <button className={styles.resetButton2} onClick={openResetModal}>
               RESET
@@ -318,6 +295,13 @@ const Sekiro = () => {
       )}
     </div>
   );
+};
+
+// Export the progress calculation for use in the main page
+export const sekiroProgress = () => {
+  const storedDefeated = JSON.parse(localStorage.getItem("sekiroDefeatedBosses")) || [];
+  const totalBosses = bosses.length;
+  return (storedDefeated.length / totalBosses) * 100;
 };
 
 export default Sekiro;

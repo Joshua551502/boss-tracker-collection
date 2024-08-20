@@ -95,49 +95,40 @@ const LiesOfP = () => {
   const modalRef = useRef(null);
 
   useEffect(() => {
-    const storedCounts = JSON.parse(localStorage.getItem("deathCounts")) || {};
-    setDeathCounts(storedCounts);
-    const storedDefeated =
-      JSON.parse(localStorage.getItem("defeatedBosses")) || [];
-    setDefeatedBosses(storedDefeated);
+    // Initialize state from localStorage
+    const initializeState = () => {
+      const storedCounts = JSON.parse(localStorage.getItem("deathCounts")) || {};
+      const storedDefeated = JSON.parse(localStorage.getItem("defeatedBosses")) || [];
+      setDeathCounts(storedCounts);
+      setDefeatedBosses(storedDefeated);
+    };
+
+    initializeState();
   }, []);
 
-  
-  useEffect(() => {
-    localStorage.setItem("deathCounts", JSON.stringify(deathCounts));
-  }, [deathCounts]);
-
-  useEffect(() => {
-    localStorage.setItem("defeatedBosses", JSON.stringify(defeatedBosses));
-  }, [defeatedBosses]);
-
-  useEffect(() => {
-    if (isModalOpen || isResetModalOpen || isGlobalResetModalOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("keydown", handleKeyDown);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isModalOpen, isResetModalOpen, isGlobalResetModalOpen]);
+  const updateLocalStorage = (counts, defeated) => {
+    localStorage.setItem("deathCounts", JSON.stringify(counts));
+    localStorage.setItem("defeatedBosses", JSON.stringify(defeated));
+  };
 
   const adjustCount = (boss, amount) => {
-    setDeathCounts((prevCounts) => ({
-      ...prevCounts,
-      [boss]: (prevCounts[boss] || 0) + amount,
-    }));
+    const newDeathCounts = {
+      ...deathCounts,
+      [boss]: Math.max(0, (deathCounts[boss] || 0) + amount),
+    };
+    setDeathCounts(newDeathCounts);
+    updateLocalStorage(newDeathCounts, defeatedBosses);
   };
 
   const resetCount = (boss) => {
-    setDeathCounts((prevCounts) => ({
-      ...prevCounts,
+    const newDeathCounts = {
+      ...deathCounts,
       [boss]: 0,
-    }));
-    setDefeatedBosses((prev) => prev.filter((b) => b !== boss));
+    };
+    const newDefeatedBosses = defeatedBosses.filter((b) => b !== boss);
+    setDeathCounts(newDeathCounts);
+    setDefeatedBosses(newDefeatedBosses);
+    updateLocalStorage(newDeathCounts, newDefeatedBosses);
   };
 
   const resetAllCounts = () => {
@@ -147,16 +138,40 @@ const LiesOfP = () => {
     });
     setDeathCounts(resetCounts);
     setDefeatedBosses([]);
+    updateLocalStorage(resetCounts, []);
     setIsGlobalResetModalOpen(false);
+  };
+
+  const handleVictoryAchieved = (event) => {
+    event.stopPropagation(); // Prevent modal from closing
+    let updatedDefeatedBosses;
+    if (defeatedBosses.includes(selectedBoss.name)) {
+      updatedDefeatedBosses = defeatedBosses.filter(
+        (boss) => boss !== selectedBoss.name
+      );
+    } else {
+      updatedDefeatedBosses = [...defeatedBosses, selectedBoss.name];
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ["#f4b400", "#8b0000", "#2e2e2e"],
+        zIndex: 9999, // Set a high z-index to ensure confetti appears in front
+      });
+    }
+    setDefeatedBosses(updatedDefeatedBosses);
+    updateLocalStorage(deathCounts, updatedDefeatedBosses);
   };
 
   const handleCountChange = (boss, value) => {
     const newValue = parseInt(value, 10);
     if (!isNaN(newValue) && newValue >= 0) {
-      setDeathCounts((prevCounts) => ({
-        ...prevCounts,
+      const newDeathCounts = {
+        ...deathCounts,
         [boss]: newValue,
-      }));
+      };
+      setDeathCounts(newDeathCounts);
+      updateLocalStorage(newDeathCounts, defeatedBosses);
     }
   };
 
@@ -194,48 +209,6 @@ const LiesOfP = () => {
     setIsGlobalResetModalOpen(false);
   };
 
-  const handleClickOutside = (event) => {
-    if (
-      (isModalOpen || isResetModalOpen || isGlobalResetModalOpen) &&
-      !event.target.closest(`.${styles.modalContent}`)
-    ) {
-      closeModal();
-      closeResetModal();
-      closeGlobalResetModal();
-    }
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === " ") {
-      event.preventDefault();
-      if (isModalOpen && selectedBoss) {
-        adjustCount(selectedBoss.name, 1);
-      }
-    } else if (event.key === "d") {
-      event.preventDefault();
-      if (isModalOpen && selectedBoss) {
-        adjustCount(selectedBoss.name, -1);
-      }
-    }
-  };
-
-  const handleVictoryAchieved = () => {
-    if (defeatedBosses.includes(selectedBoss.name)) {
-      setDefeatedBosses((prev) =>
-        prev.filter((boss) => boss !== selectedBoss.name)
-      );
-    } else {
-      setDefeatedBosses((prev) => [...prev, selectedBoss.name]);
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ["#f4b400", "#8b0000", "#2e2e2e"],
-        zIndex: 9999, // Set a high z-index to ensure confetti appears in front
-      });
-    }
-  };
-
   const totalDeaths = Object.values(deathCounts).reduce(
     (acc, count) => acc + count,
     0
@@ -254,7 +227,11 @@ const LiesOfP = () => {
             onClick={() => openModal(boss)}
           >
             <span className={styles.bossName}>
-              <img src={boss.image} alt={boss.name} className={styles.bossImage} />
+              <img
+                src={boss.image}
+                alt={boss.name}
+                className={styles.bossImage}
+              />
               {boss.name} {boss.emoji}
             </span>
             <div className={styles.buttonGroup}>
@@ -351,7 +328,10 @@ const LiesOfP = () => {
 
       {isResetModalOpen && (
         <div className={styles.modalOverlay}>
-          <div className={`${styles.modalContent} ${styles.confirmationModal}`} ref={modalRef}>
+          <div
+            className={`${styles.modalContent} ${styles.confirmationModal}`}
+            ref={modalRef}
+          >
             <div className={styles.modalContent}>
               <p>
                 Are you sure you want to reset the death count for{" "}
@@ -360,7 +340,10 @@ const LiesOfP = () => {
               <button className={styles.modalButton} onClick={handleReset}>
                 Yes
               </button>
-              <button className={styles.modalButton} onClick={closeResetModal}>
+              <button
+                className={styles.modalButton}
+                onClick={closeResetModal}
+              >
                 No
               </button>
             </div>
@@ -370,7 +353,10 @@ const LiesOfP = () => {
 
       {isGlobalResetModalOpen && (
         <div className={styles.modalOverlay}>
-          <div className={`${styles.modalContent} ${styles.confirmationModal}`} ref={modalRef}>
+          <div
+            className={`${styles.modalContent} ${styles.confirmationModal}`}
+            ref={modalRef}
+          >
             <div className={styles.modalContent}>
               <p>
                 Are you sure you want to reset the death counts for all bosses?
@@ -378,7 +364,10 @@ const LiesOfP = () => {
               <button className={styles.modalButton} onClick={resetAllCounts}>
                 Yes
               </button>
-              <button className={styles.modalButton} onClick={closeGlobalResetModal}>
+              <button
+                className={styles.modalButton}
+                onClick={closeGlobalResetModal}
+              >
                 No
               </button>
             </div>
@@ -387,6 +376,13 @@ const LiesOfP = () => {
       )}
     </div>
   );
+};
+
+// Export the progress calculation for use in the main page
+export const liesOfPProgress = () => {
+  const storedDefeated = JSON.parse(localStorage.getItem("defeatedBosses")) || [];
+  const totalBosses = bosses.length;
+  return (storedDefeated.length / totalBosses) * 100;
 };
 
 export default LiesOfP;
