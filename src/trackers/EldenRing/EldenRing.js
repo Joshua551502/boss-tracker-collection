@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
 import styles from "./EldenRing.module.css";
 import TreeSentinel from "@eldenRingImages/tree_sentinel.jpg";
@@ -112,17 +112,16 @@ const EldenRing = () => {
   const [isGlobalResetModalOpen, setIsGlobalResetModalOpen] = useState(false);
   const [isDlc, setIsDlc] = useState(false);
 
-  // Save deathCounts to Cookies
+  const modalRef = useRef(null);
+
   useEffect(() => {
     Cookies.set("eldenRingDeathCounts", JSON.stringify(deathCounts), { expires: 365 });
   }, [deathCounts]);
 
-  // Save dlcDeathCounts to Cookies
   useEffect(() => {
     Cookies.set("eldenRingDlcDeathCounts", JSON.stringify(dlcDeathCounts), { expires: 365 });
   }, [dlcDeathCounts]);
 
-  // Save defeatedBosses to Cookies
   useEffect(() => {
     Cookies.set("eldenRingDefeatedBosses", JSON.stringify(defeatedBosses), { expires: 365 });
   }, [defeatedBosses]);
@@ -241,6 +240,12 @@ const EldenRing = () => {
     setIsGlobalResetModalOpen(false);
   };
 
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
+
   const totalDeaths = Object.values(deathCounts).reduce(
     (acc, count) => acc + count,
     0
@@ -324,7 +329,11 @@ const EldenRing = () => {
       </div>
 
       {isModalOpen && selectedBoss && (
-        <div className={styles.modal}>
+        <div
+          className={styles.modal}
+          onClick={handleBackdropClick} // Close modal when clicking outside
+          ref={modalRef}
+        >
           <div className={styles.modalContent}>
             <span className={styles.close} onClick={closeModal}>
               &times;
