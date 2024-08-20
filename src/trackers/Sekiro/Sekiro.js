@@ -151,6 +151,13 @@ const Sekiro = () => {
     setIsGlobalResetModalOpen(false);
   };
 
+  const handleBackdropClick = (e) => {
+    // Close the modal if the click is on the backdrop
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
+
   const totalDeaths = Object.values(deathCounts).reduce(
     (acc, count) => acc + count,
     0
@@ -211,7 +218,7 @@ const Sekiro = () => {
       </button>
 
       {isModalOpen && selectedBoss && (
-        <div className={styles.modal}>
+        <div className={styles.modal} onClick={handleBackdropClick}>
           <div className={styles.modalContent}>
             <span className={styles.close} onClick={closeModal}>
               &times;
@@ -265,7 +272,7 @@ const Sekiro = () => {
       )}
 
       {isResetModalOpen && (
-        <div className={`${styles.modal} ${styles.confirmationModal}`}>
+        <div className={`${styles.modal} ${styles.confirmationModal}`} onClick={handleBackdropClick}>
           <div className={styles.modalContent}>
             <p>
               Are you sure you want to reset the death count for {selectedBoss.name}?
@@ -281,7 +288,7 @@ const Sekiro = () => {
       )}
 
       {isGlobalResetModalOpen && (
-        <div className={`${styles.modal} ${styles.confirmationModal}`}>
+        <div className={`${styles.modal} ${styles.confirmationModal}`} onClick={handleBackdropClick}>
           <div className={styles.modalContent}>
             <p>Are you sure you want to reset the death counts for all bosses?</p>
             <button className={styles.modalButton} onClick={resetAllCounts}>
