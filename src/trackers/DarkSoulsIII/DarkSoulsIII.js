@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import Cookies from "js-cookie";
 import styles from './DarkSoulsIII.module.css';
 import IudexGundyr from "@darkSoulsIIIImages/iudex_gundyr.jpg";
 import Vordt from "@darkSoulsIIIImages/vordt.jpg";
@@ -59,61 +60,55 @@ const dlcBosses = [
 ];
 
 const DarkSoulsIII = () => {
-  const [deathCounts, setDeathCounts] = useState({});
-  const [dlcDeathCounts, setDlcDeathCounts] = useState({});
-  const [defeatedBosses, setDefeatedBosses] = useState([]);
+  const [deathCounts, setDeathCounts] = useState(() => JSON.parse(Cookies.get("darkSoulsIIIDeathCounts") || "{}"));
+  const [dlcDeathCounts, setDlcDeathCounts] = useState(() => JSON.parse(Cookies.get("darkSoulsIIIDlcDeathCounts") || "{}"));
+  const [defeatedBosses, setDefeatedBosses] = useState(() => JSON.parse(Cookies.get("darkSoulsIIIDefeatedBosses") || "[]"));
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBoss, setSelectedBoss] = useState(null);
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
   const [isGlobalResetModalOpen, setIsGlobalResetModalOpen] = useState(false);
   const [isDlc, setIsDlc] = useState(false);
 
-  useEffect(() => {
-    const storedCounts = JSON.parse(localStorage.getItem("deathCounts")) || {};
-    setDeathCounts(storedCounts);
-    const storedDlcCounts =
-      JSON.parse(localStorage.getItem("dlcDeathCounts")) || {};
-    setDlcDeathCounts(storedDlcCounts);
-    const storedDefeated = JSON.parse(localStorage.getItem("defeatedBosses")) || [];
-    setDefeatedBosses(storedDefeated);
-  }, []);
+  const modalRef = useRef(null);
 
   useEffect(() => {
-    localStorage.setItem("deathCounts", JSON.stringify(deathCounts));
+    Cookies.set("darkSoulsIIIDeathCounts", JSON.stringify(deathCounts), { expires: 365 });
   }, [deathCounts]);
 
   useEffect(() => {
-    localStorage.setItem("dlcDeathCounts", JSON.stringify(dlcDeathCounts));
+    Cookies.set("darkSoulsIIIDlcDeathCounts", JSON.stringify(dlcDeathCounts), { expires: 365 });
   }, [dlcDeathCounts]);
 
   useEffect(() => {
-    localStorage.setItem("defeatedBosses", JSON.stringify(defeatedBosses));
+    Cookies.set("darkSoulsIIIDefeatedBosses", JSON.stringify(defeatedBosses), { expires: 365 });
   }, [defeatedBosses]);
 
-  useEffect(() => {
-    if (isModalOpen || isResetModalOpen || isGlobalResetModalOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("keydown", handleKeyDown);
+  const handleVictoryAchieved = () => {
+    let updatedDefeatedBosses;
+    if (defeatedBosses.includes(selectedBoss.name)) {
+      updatedDefeatedBosses = defeatedBosses.filter((boss) => boss !== selectedBoss.name);
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
+      updatedDefeatedBosses = [...defeatedBosses, selectedBoss.name];
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#b8860b', '#8b0000', '#2e2e2e'], // Gold color scheme for victory
+      });
     }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isModalOpen, isResetModalOpen, isGlobalResetModalOpen]);
+    setDefeatedBosses(updatedDefeatedBosses);
+  };
 
   const adjustCount = (boss, amount) => {
     if (isDlc) {
       setDlcDeathCounts((prevCounts) => ({
         ...prevCounts,
-        [boss]: (prevCounts[boss] || 0) + amount,
+        [boss]: Math.max(0, (prevCounts[boss] || 0) + amount),
       }));
     } else {
       setDeathCounts((prevCounts) => ({
         ...prevCounts,
-        [boss]: (prevCounts[boss] || 0) + amount,
+        [boss]: Math.max(0, (prevCounts[boss] || 0) + amount),
       }));
     }
   };
@@ -202,40 +197,9 @@ const DarkSoulsIII = () => {
     setIsGlobalResetModalOpen(false);
   };
 
-  const handleClickOutside = (event) => {
-    if (event.target.closest(`.${styles.modalContent}`)) {
-      return;
-    }
-    closeModal();
-    closeResetModal();
-    closeGlobalResetModal();
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === " ") {
-      event.preventDefault();
-      if (isModalOpen && selectedBoss) {
-        adjustCount(selectedBoss.name, 1);
-      }
-    } else if (event.key === "d") {
-      event.preventDefault();
-      if (isModalOpen && selectedBoss) {
-        adjustCount(selectedBoss.name, -1);
-      }
-    }
-  };
-
-  const handleVictoryAchieved = () => {
-    if (defeatedBosses.includes(selectedBoss.name)) {
-      setDefeatedBosses((prev) => prev.filter((boss) => boss !== selectedBoss.name));
-    } else {
-      setDefeatedBosses((prev) => [...prev, selectedBoss.name]);
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#b8860b', '#8b0000', '#2e2e2e'], // Gold color scheme for victory
-      });
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
     }
   };
 
@@ -320,7 +284,11 @@ const DarkSoulsIII = () => {
       </button>
 
       {isModalOpen && selectedBoss && (
-        <div className={styles.modal}>
+        <div
+          className={styles.modal}
+          onClick={handleBackdropClick} // Close modal when clicking outside
+          ref={modalRef}
+        >
           <div className={styles.modalContent}>
             <span className={styles.close} onClick={closeModal}>
               &times;
@@ -417,5 +385,11 @@ const DarkSoulsIII = () => {
   );
 };
 
-export default DarkSoulsIII;
+// Export the progress calculation for use in the main page
+export const darkSoulsIIIProgress = () => {
+  const storedDefeated = JSON.parse(Cookies.get("darkSoulsIIIDefeatedBosses") || "[]");
+  const totalBosses = baseGameBosses.length + dlcBosses.length;
+  return (storedDefeated.length / totalBosses) * 100;
+};
 
+export default DarkSoulsIII;

@@ -5,6 +5,7 @@ import styles from "./MainPage.module.css";
 import { liesOfPProgress } from "../trackers/LiesOfP/LiesOfP";
 import { sekiroProgress } from "../trackers/Sekiro/Sekiro";
 import { eldenRingProgress } from "../trackers/EldenRing/EldenRing";
+import { darkSoulsIIIProgress } from "../trackers/DarkSoulsIII/DarkSoulsIII";
 
 import DarkSoulsIII from "@darkSoulsIIIImages/darksoulsiii.png";
 import Sekiro from "@sekiroImages/sekiro.png";
@@ -21,11 +22,13 @@ const MainPage = () => {
   const [liesOfPProgressValue, setLiesOfPProgressValue] = useState(0);
   const [sekiroProgressValue, setSekiroProgressValue] = useState(0); // State for Sekiro progress
   const [eldenRingProgressValue, setEldenRingProgressValue] = useState(0);
+  const [DarkSoulsIIIProgressValue, setDarkSoulsIIIProgressValue] = useState(0);
 
   useEffect(() => {
     setLiesOfPProgressValue(liesOfPProgress());
     setSekiroProgressValue(sekiroProgress());
-    setEldenRingProgressValue(eldenRingProgress()); // Fetch and set the progress value for Elden Ring
+    setEldenRingProgressValue(eldenRingProgress());
+    setDarkSoulsIIIProgressValue(darkSoulsIIIProgress()) // Fetch and set the progress value for Elden Ring
   }, []);
 
   const trackers = [
@@ -33,7 +36,7 @@ const MainPage = () => {
       title: "Dark Souls III",
       image: DarkSoulsIII,
       releaseDate: "March 24, 2016",
-      progress: 100,
+      progress: DarkSoulsIIIProgressValue,
       link: "/dark-souls-iii",
       mediaType: "Game",
       company: "From Software",
