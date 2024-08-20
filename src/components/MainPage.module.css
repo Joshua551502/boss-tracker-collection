@@ -78,7 +78,11 @@ html, body {
 
 .mainPage{
   background-color: #15151C;
+  
+}
 
+.contentWrapper{
+  margin-top: 100px;
 }
 
 .trackerImage{
@@ -128,7 +132,7 @@ html, body {
   box-sizing: border-box;
  
   /* Define grid columns with a fixed width of 350px */
-  grid-template-columns: repeat(auto-fill, 400px);
+  grid-template-columns: repeat(auto-fill, 500px);
   gap: 21px; /* Space between items */
   row-gap: 40px;
   margin-bottom: 30px;
@@ -171,8 +175,7 @@ html, body {
 
 .trackerCard {
   background-color: #1D1D24;
-  max-width: 370px;
-  height: 485px;
+  height: fit-content;
   border-radius: 15px;
   transition: transform 0.2s ease-in-out; /* Add a hover effect */
 }
@@ -339,18 +342,25 @@ html, body {
 }
 
 .navContainer{
-
+  /* border: 1px solid #fff; */
+  padding-bottom: 50px;
+  background-color: #15151C;
+  position:fixed;
+  width: 100%;
+  z-index: 9999999;
+  margin: 0;
 }
 
-/* .sideNav {
+.sideNav {
   background-color: #1D1D24;
   width: 63px;
-  height: 403px;
-  margin-left: 32px;
-  margin-top: -1090px;
+  height: 350px;
+  margin-left: 33px;
+  z-index: 9999999;
+  position:absolute;
   border-radius: 15px;
-} */
-
+  top: 165px;
+} 
 
 .trackerTitle {
   margin: 14px 0;
@@ -360,8 +370,6 @@ html, body {
   overflow: hidden; /* Ensures that the overflowed text is hidden */
   text-overflow: ellipsis; /* Adds the "..." continuation */
 }
-
-
 
 .trackerProgressContainer {
   display: flex;
@@ -396,4 +404,142 @@ html, body {
   text-align: right; /* Aligns text to the right */
   vertical-align: middle;
   margin-top: -17px;
+}
+
+.trackerList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); /* Adjust columns based on available space */
+  gap: 30px; /* Space between items */
+  row-gap: 40px;
+  margin-left: 130px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  border: 1px solid #ffffff00;
+  margin-right: 40px;
+
+
+}
+
+.trackerCard{
+  padding-bottom: 30px;
+}
+.trackerImage img{
+  width: 100%;
+  height: 100%;
+}
+
+/* Add a media query for screens with a max width of 950px */
+@media screen and (max-width: 950px) {
+  
+  .contentWrapper {
+    margin-top: 60px; /* Adjust the top margin to compensate for reduced screen space */
+    padding: 20px; /* Add padding to the content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .trackerList {
+    margin: 0 auto; /* Center the grid */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Single column layout when small enough */
+    gap: 16px; /* Keep the gap consistent */
+     /* Ensure the grid doesn't stretch too wide */
+  }
+
+  .trackerCard {
+    background-color: #1D1D24;
+   
+    height: fit-content;
+    border-radius: 15px;
+    padding-bottom: 10px;
+    transition: transform 0.2s ease-in-out; /* Add a hover effect */
+  }
+
+  .pageTitle {
+    margin-left: 0;
+    text-align: center; /* Center the title */
+  }
+
+  .trackerImage img {
+    height: auto; /* Allow the image height to adjust based on the width */
+    width: 100%; /* Keep the image responsive */
+  }
+
+  .sideNav {
+    display: none; /* Hide the side navigation for smaller screens */
+  }
+
+  .logo{
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 645px) {
+  .trackerList {
+    grid-template-columns: 1fr; /* Single column layout */
+    max-width: 100%; /* Ensure the list takes full width */
+    padding: 0 10px; /* Add padding to keep some space on the sides */
+    margin: 0 auto; /* Center the trackerList */
+  }
+
+  .searchContainer {
+    width: 100%; /* Make the search bar take full width */
+    max-width: 300px; /* Limit the max width to make it smaller */
+    margin: 0 auto; /* Center the search bar */
+    margin-left: 30px;
+  }
+
+  .searchButton {
+    width: 70px; /* Keep the button size reduced */
+    height: 35px; /* Adjust the height to fit the new container size */
+    
+  }
+
+  .pageTitle {
+    font-size: 24px; /* Adjust font size if needed */
+    text-align: center; /* Ensure the title is centered */
+  }
+
+  .trackerCard {
+    max-width: 100%; /* Ensure the card takes full width within the container */
+    width: 100%; /* Ensure the card is fully responsive */
+    margin: 0 auto; /* Center the card */
+    box-sizing: border-box; /* Include padding and borders in the width and height */
+  }
+}
+
+
+.contentWrapper {
+  margin-top: 100px; /* Adjust this value to match the height of the navbar */
+}
+.navContainer {
+  /* border: 1px solid #fff; */
+  padding-bottom: 50px;
+  background-color: #15151C;
+  position: fixed;
+  top: 0; /* Ensures the navbar is fixed at the top */
+  left: 0; /* Aligns navbar to the left */
+  width: 100%;
+  z-index: 9999999;
+  margin: 0;
+}
+
+.contentWrapper {
+  margin-top: 80px; /* Adjust this value to match the height of the navbar */
+  padding: 20px; /* Optional: padding for additional spacing */
+  /* border: 1px solid #fff; */
+}
+
+
+.navContainer {
+  padding-bottom: 50px;
+  background-color: #15151C;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; /* Ensures it stops at the right edge */
+  width: calc(100% - 8px); /* Subtract the width of the scrollbar (about 8px) */
+  z-index: 9999; /* Ensure the navbar is on top of the content but not over the scrollbar */
+  margin: 0;
+  box-sizing: border-box; /* Ensure padding and borders are included in the width */
 }
