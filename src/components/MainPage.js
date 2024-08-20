@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./MainPage.module.css";
+
 import { liesOfPProgress } from "../trackers/LiesOfP/LiesOfP";
-import { sekiroProgress } from "../trackers/Sekiro/Sekiro"; // Import the Sekiro progress function
+import { sekiroProgress } from "../trackers/Sekiro/Sekiro";
+import { eldenRingProgress } from "../trackers/EldenRing/EldenRing";
+
 import DarkSoulsIII from "@darkSoulsIIIImages/darksoulsiii.png";
 import Sekiro from "@sekiroImages/sekiro.png";
 import EldenRing from "@eldenRingImages/eldenring.png";
@@ -17,13 +20,12 @@ const MainPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [liesOfPProgressValue, setLiesOfPProgressValue] = useState(0);
   const [sekiroProgressValue, setSekiroProgressValue] = useState(0); // State for Sekiro progress
+  const [eldenRingProgressValue, setEldenRingProgressValue] = useState(0);
 
   useEffect(() => {
-    // Fetch and set the progress value from the Lies of P tracker
     setLiesOfPProgressValue(liesOfPProgress());
-    
-    // Fetch and set the progress value from the Sekiro tracker
     setSekiroProgressValue(sekiroProgress());
+    setEldenRingProgressValue(eldenRingProgress()); // Fetch and set the progress value for Elden Ring
   }, []);
 
   const trackers = [
@@ -41,7 +43,7 @@ const MainPage = () => {
       title: "Sekiro: Shadows Die Twice",
       image: Sekiro,
       releaseDate: "March 22, 2019",
-      progress: sekiroProgressValue, // Use the calculated Sekiro progress
+      progress: sekiroProgressValue,
       link: "/sekiro",
       mediaType: "Game",
       company: "From Software",
@@ -51,7 +53,7 @@ const MainPage = () => {
       title: "Elden Ring",
       image: EldenRing,
       releaseDate: "February 25, 2022",
-      progress: 39,
+      progress: eldenRingProgressValue, // Use the calculated Elden Ring progress
       link: "/elden-ring",
       mediaType: "Game",
       company: "From Software",
@@ -61,13 +63,14 @@ const MainPage = () => {
       title: "Lies of P",
       image: LiesOfP,
       releaseDate: "September 19, 2023",
-      progress: liesOfPProgressValue, // Use the calculated Lies of P progress
+      progress: liesOfPProgressValue,
       link: "/lies-of-p",
       mediaType: "Game",
       company: "Neowiz Games",
       companyLogo: Neowiz,
     },
   ];
+  
 
   // Determine the color based on the progress value
   const getProgressBarColor = (progress) => {

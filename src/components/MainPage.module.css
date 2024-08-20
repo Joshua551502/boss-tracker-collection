@@ -70,8 +70,8 @@ html, body {
 }
 
 .trackerList {
-  /* border: 1px solid #fff; */
-  max-width: calc(95% - 56px); /* Adjust the width based on screen size minus 56px */
+  /* border: 1px solid #ff0000; */
+  max-width: calc(100% + 50px); /* Adjust the width based on screen size minus 56px */
   display: grid;
   min-width: 370px;
   margin-left: 130px;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./LiesOfP.module.css"; // Import the CSS module
+import styles from "./LiesOfP.module.css";
 import confetti from "canvas-confetti";
 import ParadeMaster from "@liesOfPImages/parade_master.jpg";
 import MadDonkey from "@liesOfPImages/mad_donkey.jpg";
@@ -209,6 +209,14 @@ const LiesOfP = () => {
     setIsGlobalResetModalOpen(false);
   };
 
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+      closeResetModal();
+      closeGlobalResetModal();
+    }
+  };
+
   const totalDeaths = Object.values(deathCounts).reduce(
     (acc, count) => acc + count,
     0
@@ -271,7 +279,7 @@ const LiesOfP = () => {
       </button>
 
       {isModalOpen && selectedBoss && (
-        <div className={styles.modalOverlay}>
+        <div className={styles.modalOverlay} onClick={handleBackdropClick}>
           <div className={styles.modalContent} ref={modalRef}>
             <span className={styles.close} onClick={closeModal}>
               &times;
@@ -327,7 +335,7 @@ const LiesOfP = () => {
       )}
 
       {isResetModalOpen && (
-        <div className={styles.modalOverlay}>
+        <div className={styles.modalOverlay} onClick={handleBackdropClick}>
           <div
             className={`${styles.modalContent} ${styles.confirmationModal}`}
             ref={modalRef}
@@ -352,7 +360,7 @@ const LiesOfP = () => {
       )}
 
       {isGlobalResetModalOpen && (
-        <div className={styles.modalOverlay}>
+        <div className={styles.modalOverlay} onClick={handleBackdropClick}>
           <div
             className={`${styles.modalContent} ${styles.confirmationModal}`}
             ref={modalRef}
