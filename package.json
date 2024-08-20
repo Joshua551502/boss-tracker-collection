@@ -2,6 +2,7 @@
   "name": "boss-tracker-collection",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://joshua551502.github.io/boss-tracker-collection",
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -11,6 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "canvas-confetti": "^1.9.3",
+    "gh-pages": "^6.1.1",
     "js-cookie": "^3.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -26,7 +28,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
