@@ -22,28 +22,28 @@ const Footer = () => {
         return (
           <div>
             <h2>About Us</h2>
-            <p>Welcome to Soul Tracker! We specialize in tracking your progress in challenging games like Soulslike titles and more.</p>
+            <h3>Welcome to Soul Tracker! We specialize in tracking your progress in challenging games like Soulslike titles and more.</h3>
           </div>
         );
       case 'Contact':
         return (
           <div>
             <h2>Contact Us</h2>
-            <p>No option yet!</p>
+            <h3>No option yet!</h3>
           </div>
         );
       case 'Privacy Policy':
         return (
           <div>
             <h2>Privacy Policy</h2>
-            <p>Your privacy is important to us. We do not collect personal data without your consent and we ensure your information is kept secure.</p>
+            <h3>Your privacy is important to us. We do not collect personal data without your consent and we ensure your information is kept secure.</h3>
           </div>
         );
       case 'Terms of Service':
         return (
           <div>
             <h2>Terms of Service</h2>
-            <p>By using Soul Tracker, you agree to our terms of service. Please make sure to review them carefully.</p>
+            <h3>By using Soul Tracker, you agree to our terms of service. Please make sure to review them carefully.</h3>
           </div>
         );
       default:

@@ -109,6 +109,11 @@
     margin-top: 0;
     color: #4ABF85;
   }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 400;
+  }
   
   p {
     color: #404045;

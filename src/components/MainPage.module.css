@@ -18,7 +18,7 @@ html, body {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #1D1D24; /* Match the track color with your dark theme */
+  background-color: #15151C; /* Match the track color with your dark theme */
   border-radius: 10px; /* Rounded corners for the track */
 }
 
@@ -30,7 +30,7 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #323235; /* Darken the thumb on hover */
+  background-color: #3e3e42; /* Darken the thumb on hover */
 }
 
 /* Firefox scrollbar */
@@ -355,7 +355,7 @@ html, body {
   background-color: #1D1D24;
   width: 63px;
   height: 350px;
-  margin-left: 33px;
+  margin-left: 38px;
   z-index: 9999999;
   position:absolute;
   border-radius: 15px;
@@ -421,7 +421,7 @@ html, body {
 }
 
 .trackerCard{
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 .trackerImage img{
   width: 100%;
