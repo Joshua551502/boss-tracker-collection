@@ -6,7 +6,9 @@ import { liesOfPProgress } from "../trackers/LiesOfP/LiesOfP";
 import { sekiroProgress } from "../trackers/Sekiro/Sekiro";
 import { eldenRingProgress } from "../trackers/EldenRing/EldenRing";
 import { darkSoulsIIIProgress } from "../trackers/DarkSoulsIII/DarkSoulsIII";
+import { darkSoulsIProgress } from "../trackers/DarkSoulsI/DarkSoulsI";
 
+import DarkSoulsI from "../assets/images/DarkSoulsI/darksoulsi.png";
 import DarkSoulsIII from "@darkSoulsIIIImages/darksoulsiii.png";
 import Sekiro from "@sekiroImages/sekiro.png";
 import EldenRing from "@eldenRingImages/eldenring.png";
@@ -23,15 +25,26 @@ const MainPage = () => {
   const [sekiroProgressValue, setSekiroProgressValue] = useState(0); // State for Sekiro progress
   const [eldenRingProgressValue, setEldenRingProgressValue] = useState(0);
   const [DarkSoulsIIIProgressValue, setDarkSoulsIIIProgressValue] = useState(0);
+  const [DarkSoulsIProgressValue, setDarkSoulsIProgressValue] = useState(0);
 
   useEffect(() => {
     setLiesOfPProgressValue(liesOfPProgress());
     setSekiroProgressValue(sekiroProgress());
     setEldenRingProgressValue(eldenRingProgress());
-    setDarkSoulsIIIProgressValue(darkSoulsIIIProgress()) // Fetch and set the progress value for Elden Ring
+    setDarkSoulsIIIProgressValue(darkSoulsIIIProgress()); // Fetch and set the progress value for Elden Ring
   }, []);
 
   const trackers = [
+    {
+      title: "Dark Souls I",
+      image: DarkSoulsI,
+      releaseDate: "September 22, 2011",
+      progress: DarkSoulsIProgressValue,
+      link: "/dark-souls-i",
+      mediaType: "Game",
+      company: "From Software",
+      companyLogo: fromSoftwareLogo,
+    },
     {
       title: "Dark Souls III",
       image: DarkSoulsIII,
@@ -73,7 +86,6 @@ const MainPage = () => {
       companyLogo: Neowiz,
     },
   ];
-  
 
   // Determine the color based on the progress value
   const getProgressBarColor = (progress) => {
@@ -92,25 +104,28 @@ const MainPage = () => {
 
   return (
     <div className={styles.mainPage}>
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <img src={SoulTrackerLogo} alt="Logo" />
-        </div>
-        <div className={styles.searchBar}>
-          <div className={styles.searchContainer}>
-            <input
-              type="text"
-              placeholder="Search for title"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className={styles.searchInput}
-            />
-            <button className={styles.searchButton}>
-              <img src={SearchIcon} alt="Search" />
-            </button>
+      <div className={styles.navContainer}>
+        <nav className={styles.navbar}>
+          <div className={styles.logo}>
+            <img src={SoulTrackerLogo} alt="Logo" />
           </div>
-        </div>
-      </nav>
+          <div className={styles.searchBar}>
+            <div className={styles.searchContainer}>
+              <input
+                type="text"
+                placeholder="Search for title"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className={styles.searchInput}
+              />
+              <button className={styles.searchButton}>
+                <img src={SearchIcon} alt="Search" />
+              </button>
+            </div>
+          </div>
+        </nav>
+        <div className={styles.sideNav}></div>
+      </div>
 
       <div className={styles.contentWrapper}>
         <h1 className={styles.pageTitle}>Collection</h1>

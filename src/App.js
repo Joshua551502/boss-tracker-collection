@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainPage from './components/MainPage';
+import DarkSoulsI from './trackers/DarkSoulsI/DarkSoulsI';
 import DarkSoulsIII from './trackers/DarkSoulsIII/DarkSoulsIII';
 import Sekiro from './trackers/Sekiro/Sekiro';
 import LiesOfP from './trackers/LiesOfP/LiesOfP';
@@ -11,6 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path="/dark-souls-i" element={<DarkSoulsI />} />
         <Route path="/dark-souls-iii" element={<DarkSoulsIII />} />
         <Route path="/sekiro" element={<Sekiro />} />
         <Route path="/lies-of-p" element={<LiesOfP />} />

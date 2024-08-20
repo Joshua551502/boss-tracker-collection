@@ -17,7 +17,10 @@ module.exports = {
         __dirname,
         "src/assets/images/DarkSoulsIII"
       ),
-      
+      "@darkSoulsIImages": path.resolve(
+        __dirname,
+        "src/assets/images/DarkSoulsI"
+      ),
 
       // Add more aliases as needed
     },
