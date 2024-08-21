@@ -99,7 +99,26 @@ const DarkSoulsIII = () => {
     }
     setDefeatedBosses(updatedDefeatedBosses);
   };
-
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!selectedBoss) return;
+  
+      if (e.code === "Space") {
+        e.preventDefault(); // Prevent the default action for the space key (e.g., scrolling down)
+        adjustCount(selectedBoss.name, 1);
+      } else if (e.key === "d" || e.key === "D") {
+        adjustCount(selectedBoss.name, -1);
+      }
+    };
+  
+    window.addEventListener("keydown", handleKeyDown);
+  
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedBoss]);
+  
   const adjustCount = (boss, amount) => {
     if (isDlc) {
       setDlcDeathCounts((prevCounts) => ({
