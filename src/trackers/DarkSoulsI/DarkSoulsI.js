@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import styles from './DarkSoulsI.module.css';
 import AsylumDemon from "../../assets/images/DarkSoulsI/asylum_demon.jpg";
 import TaurusDemon from "../../assets/images/DarkSoulsI/taurus_demon.jpg";
@@ -71,6 +72,7 @@ const DarkSoulsI = () => {
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
   const [isGlobalResetModalOpen, setIsGlobalResetModalOpen] = useState(false);
   const [isDlc, setIsDlc] = useState(false);
+  const navigate = useNavigate();
 
   const modalRef = useRef(null);
 
@@ -225,7 +227,9 @@ const DarkSoulsI = () => {
           ? "DARK SOULS I DLC BOSS TRACKER"
           : "DARK SOULS I BOSS TRACKER"}
       </h1>
-
+      <button className={styles.homeButton} onClick={() => navigate("/")}>
+        BACK TO HOME
+      </button>
       <div className={styles.titleItems}>
         <button className={styles.toggleButton} onClick={() => setIsDlc(!isDlc)}>
           {isDlc ? "BASE GAME BOSSES" : "DLC BOSSES"}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./LiesOfP.module.css";
+import { useNavigate } from "react-router-dom";
 import confetti from "canvas-confetti";
 import ParadeMaster from "@liesOfPImages/parade_master.jpg";
 import MadDonkey from "@liesOfPImages/mad_donkey.jpg";
@@ -105,7 +106,7 @@ const LiesOfP = () => {
 
     initializeState();
   }, []);
-
+  const navigate = useNavigate();
   const updateLocalStorage = (counts, defeated) => {
     localStorage.setItem("deathCounts", JSON.stringify(counts));
     localStorage.setItem("defeatedBosses", JSON.stringify(defeated));
@@ -225,6 +226,9 @@ const LiesOfP = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>LIES OF P BOSS TRACKER</h1>
+      <button className={styles.homeButton} onClick={() => navigate("/")}>
+        BACK TO HOME
+      </button>
       <ul className={styles.bossList}>
         {bosses.map((boss) => (
           <li

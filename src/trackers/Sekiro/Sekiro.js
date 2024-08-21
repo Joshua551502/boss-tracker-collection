@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Sekiro.module.css";
+import { useNavigate } from "react-router-dom";
+
 import GyoubuOniwa from "@sekiroImages/gyoubu_oniwa.jpg";
 import LadyButterfly from "@sekiroImages/lady_butterfly.jpg";
 import GenichiroAshina from "@sekiroImages/genichiro_ashina.jpg";
@@ -40,6 +42,7 @@ const Sekiro = () => {
   const [selectedBoss, setSelectedBoss] = useState(null);
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
   const [isGlobalResetModalOpen, setIsGlobalResetModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Initialize state from localStorage
@@ -166,6 +169,9 @@ const Sekiro = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Sekiro Boss Tracker</h1>
+      <button className={styles.homeButton} onClick={() => navigate("/")}>
+        BACK TO HOME
+      </button>
       <ul className={styles.bossList}>
         {bosses.map((boss) => (
           <li

@@ -294,7 +294,7 @@ html, body {
 
 .navContainer{
   /* border: 1px solid #fff; */
-
+  padding-bottom: 40px;
   background-color: #15151C;
   position:fixed;
   width: 100%;
@@ -516,6 +516,11 @@ html, body {
     /* border: 1px solid#fff; */
     display: flex;
     margin-top: 20px;
+  }
+  .pageTitle{
+ 
+    margin-top: 0px;
+
   }
 }
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import styles from "./EldenRing.module.css";
 import TreeSentinel from "@eldenRingImages/tree_sentinel.jpg";
 import Margit from "@eldenRingImages/margit.jpg";
@@ -110,7 +111,7 @@ const EldenRing = () => {
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
   const [isGlobalResetModalOpen, setIsGlobalResetModalOpen] = useState(false);
   const [isDlc, setIsDlc] = useState(false);
-
+  const navigate = useNavigate();
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -264,7 +265,9 @@ const EldenRing = () => {
           ? "SHADOW OF THE ERDTREE BOSS TRACKER"
           : "ELDEN RING BOSS TRACKER"}
       </h1>
-
+      <button className={styles.homeButton} onClick={() => navigate("/")}>
+        BACK TO HOME
+      </button>
       <div className={styles.titleItems}>
         <button className={styles.toggleButton} onClick={() => setIsDlc(!isDlc)}>
           {isDlc ? "BASE GAME BOSSES" : "SHADOW OF THE ERDTREE BOSSES"}

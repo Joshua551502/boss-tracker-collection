@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import styles from './Bloodborne.module.css';
 import ClericBeast from "../../assets/images/Bloodborne/cleric_beast.jpg";
 import FatherGascoigne from "../../assets/images/Bloodborne/father_gascoigne.jpg";
@@ -197,7 +198,7 @@ const Bloodborne = () => {
       closeModal();
     }
   };
-
+  const navigate = useNavigate();
   const totalDeaths = Object.values(deathCounts).reduce(
     (acc, count) => acc + count,
     0
@@ -217,7 +218,9 @@ const Bloodborne = () => {
           ? "The Old Hunters"
           : "Bloodborne Boss Tracker"}
       </h1>
-
+      <button className={styles.homeButton} onClick={() => navigate("/")}>
+        BACK TO HOME
+      </button>
       <div className={styles.titleItems}>
         <button className={styles.toggleButton} onClick={() => setIsDlc(!isDlc)}>
           {isDlc ? "BASE GAME BOSSES" : "THE OLD HUNTERS"}

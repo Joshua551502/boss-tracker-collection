@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import styles from './DarkSoulsIII.module.css';
 import IudexGundyr from "@darkSoulsIIIImages/iudex_gundyr.jpg";
 import Vordt from "@darkSoulsIIIImages/vordt.jpg";
@@ -82,7 +83,7 @@ const DarkSoulsIII = () => {
   useEffect(() => {
     Cookies.set("darkSoulsIIIDefeatedBosses", JSON.stringify(defeatedBosses), { expires: 365 });
   }, [defeatedBosses]);
-
+  const navigate = useNavigate();
   const handleVictoryAchieved = () => {
     let updatedDefeatedBosses;
     if (defeatedBosses.includes(selectedBoss.name)) {
@@ -222,7 +223,9 @@ const DarkSoulsIII = () => {
           ? "DARK SOULS III DLC BOSS TRACKER"
           : "DARK SOULS III BOSS TRACKER"}
       </h1>
-
+      <button className={styles.homeButton} onClick={() => navigate("/")}>
+        BACK TO HOME
+      </button>
       <div className={styles.titleItems}>
         <button className={styles.toggleButton} onClick={() => setIsDlc(!isDlc)}>
           {isDlc ? "BASE GAME BOSSES" : "DLC BOSSES"}

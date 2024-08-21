@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import styles from './DemonSouls.module.css';
+import styles from "./DemonSouls.module.css";
 import Vanguard from "../../assets/images/DemonSouls/vanguard.jpg";
 import Phalanx from "../../assets/images/DemonSouls/phalanx.jpg";
 import TowerKnight from "../../assets/images/DemonSouls/tower_knight.jpg";
@@ -41,39 +42,49 @@ const bosses = [
   { name: "PENETRATOR", image: Penetrator, emoji: "⚔️" },
   { name: "FALSE KING ALLANT", image: FalseKingAllant, emoji: "👑" },
   { name: "OLD KING ALLANT", image: OldKingAllant, emoji: "👴" },
-  { name: "OLD KING DORAN", image: OldKingDoran, emoji: "🗡️" }
-  
+  { name: "OLD KING DORAN", image: OldKingDoran, emoji: "🗡️" },
 ];
 
 const DemonSouls = () => {
-  const [deathCounts, setDeathCounts] = useState(() => JSON.parse(Cookies.get("demonSoulsDeathCounts") || "{}"));
-  const [defeatedBosses, setDefeatedBosses] = useState(() => JSON.parse(Cookies.get("demonSoulsDefeatedBosses") || "[]"));
+  const [deathCounts, setDeathCounts] = useState(() =>
+    JSON.parse(Cookies.get("demonSoulsDeathCounts") || "{}")
+  );
+  const [defeatedBosses, setDefeatedBosses] = useState(() =>
+    JSON.parse(Cookies.get("demonSoulsDefeatedBosses") || "[]")
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBoss, setSelectedBoss] = useState(null);
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
   const [isGlobalResetModalOpen, setIsGlobalResetModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const modalRef = useRef(null);
 
   useEffect(() => {
-    Cookies.set("demonSoulsDeathCounts", JSON.stringify(deathCounts), { expires: 365 });
+    Cookies.set("demonSoulsDeathCounts", JSON.stringify(deathCounts), {
+      expires: 365,
+    });
   }, [deathCounts]);
 
   useEffect(() => {
-    Cookies.set("demonSoulsDefeatedBosses", JSON.stringify(defeatedBosses), { expires: 365 });
+    Cookies.set("demonSoulsDefeatedBosses", JSON.stringify(defeatedBosses), {
+      expires: 365,
+    });
   }, [defeatedBosses]);
 
   const handleVictoryAchieved = () => {
     let updatedDefeatedBosses;
     if (defeatedBosses.includes(selectedBoss.name)) {
-      updatedDefeatedBosses = defeatedBosses.filter((boss) => boss !== selectedBoss.name);
+      updatedDefeatedBosses = defeatedBosses.filter(
+        (boss) => boss !== selectedBoss.name
+      );
     } else {
       updatedDefeatedBosses = [...defeatedBosses, selectedBoss.name];
       confetti({
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#b8860b', '#8b0000', '#2e2e2e'], // Gold color scheme for victory
+        colors: ["#b8860b", "#8b0000", "#2e2e2e"], // Gold color scheme for victory
       });
     }
     setDefeatedBosses(updatedDefeatedBosses);
@@ -161,18 +172,25 @@ const DemonSouls = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>
-        DEMON SOULS BOSS TRACKER
-      </h1>
+      <h1 className={styles.title}>DEMON SOULS BOSS TRACKER</h1>
+      <button className={styles.homeButton} onClick={() => navigate("/")}>
+        BACK TO HOME
+      </button>
       <ul className={styles.bossList}>
         {bosses.map((boss) => (
           <li
             key={boss.name}
-            className={`${styles.bossItem} ${defeatedBosses.includes(boss.name) ? styles.defeated : ''}`}
+            className={`${styles.bossItem} ${
+              defeatedBosses.includes(boss.name) ? styles.defeated : ""
+            }`}
             onClick={() => openModal(boss)}
           >
             <span className={styles.bossName}>
-              <img src={boss.image} alt={boss.name} className={styles.bossImage} />
+              <img
+                src={boss.image}
+                alt={boss.name}
+                className={styles.bossImage}
+              />
               {boss.name} {boss.emoji}
             </span>
             <div className={styles.buttonGroup}>
@@ -259,8 +277,8 @@ const DemonSouls = () => {
               onClick={handleVictoryAchieved}
             >
               {defeatedBosses.includes(selectedBoss.name)
-                ? 'UNDO VICTORY ACHIEVED'
-                : 'VICTORY ACHIEVED'}
+                ? "UNDO VICTORY ACHIEVED"
+                : "VICTORY ACHIEVED"}
             </button>
             <button className={styles.resetButton2} onClick={openResetModal}>
               RESET
@@ -295,7 +313,10 @@ const DemonSouls = () => {
             <button className={styles.modalButton} onClick={resetAllCounts}>
               Yes
             </button>
-            <button className={styles.modalButton} onClick={closeGlobalResetModal}>
+            <button
+              className={styles.modalButton}
+              onClick={closeGlobalResetModal}
+            >
               No
             </button>
           </div>
@@ -307,7 +328,9 @@ const DemonSouls = () => {
 
 // Export the progress calculation for use in the main page
 export const demonSoulsProgress = () => {
-  const storedDefeated = JSON.parse(Cookies.get("demonSoulsDefeatedBosses") || "[]");
+  const storedDefeated = JSON.parse(
+    Cookies.get("demonSoulsDefeatedBosses") || "[]"
+  );
   const totalBosses = bosses.length;
   return (storedDefeated.length / totalBosses) * 100;
 };

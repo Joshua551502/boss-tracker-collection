@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import styles from './DarkSoulsII.module.css';
 import LastGiant from "../../assets/images/DarkSoulsII/last_giant.jpg";
 import ThePursuer from "../../assets/images/DarkSoulsII/the_pursuer.jpg";
@@ -93,6 +94,7 @@ const dlcBosses = [
 ];
 
 const DarkSoulsII = () => {
+  const navigate = useNavigate();
   const [deathCounts, setDeathCounts] = useState(() => JSON.parse(Cookies.get("darkSoulsIIDeathCounts") || "{}"));
   const [dlcDeathCounts, setDlcDeathCounts] = useState(() => JSON.parse(Cookies.get("darkSoulsIIDlcDeathCounts") || "{}"));
   const [defeatedBosses, setDefeatedBosses] = useState(() => JSON.parse(Cookies.get("darkSoulsIIDefeatedBosses") || "[]"));
@@ -255,7 +257,9 @@ const DarkSoulsII = () => {
           ? "DARK SOULS II DLC BOSS TRACKER"
           : "DARK SOULS II BOSS TRACKER"}
       </h1>
-
+      <button className={styles.homeButton} onClick={() => navigate("/")}>
+        BACK TO HOME
+      </button>
       <div className={styles.titleItems}>
         <button className={styles.toggleButton} onClick={() => setIsDlc(!isDlc)}>
           {isDlc ? "BASE GAME BOSSES" : "DLC BOSSES"}

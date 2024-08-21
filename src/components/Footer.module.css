@@ -1,8 +1,6 @@
-/* Existing styles for the footer */
-
 .footer {
     background-color: #1D1D24;
-    padding: 40px 0;
+    padding: 20px 0; /* Reduced padding for small screens */
     color: #fff;
     font-family: 'Inter', sans-serif;
   }
@@ -13,7 +11,7 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px; /* Reduced padding for small screens */
   }
   
   .logoContainer {
@@ -26,7 +24,9 @@
   
   .links {
     display: flex;
-    gap: 20px;
+    flex-direction: column; /* Stack links vertically on small screens */
+    align-items: center;
+    gap: 10px; /* Reduced gap for small screens */
     margin-bottom: 20px;
   }
   
@@ -85,7 +85,7 @@
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 80%;
+    width: 90%; /* Adjusted for small screens */
     max-width: 500px;
     position: relative;
   }
@@ -117,20 +117,23 @@
   
   p {
     color: #404045;
+  }
+  
+  @media (max-width: 600px) {
+    .footer {
+      padding: 20px 0;
+    }
     
-  }
-  
-  .socialLink img {
-    height: 24px;
-    transition: transform 0.3s ease;
-  }
-  
-  .socialLink:hover img {
-    transform: scale(1);
-    content: url('../assets/images/MainPage/githublogohover.png'); /* Update the image on hover */
-  }
-  
-  .links button{
-    font-family: inter;
-    font-weight: 600;
+    .footerContent {
+      padding: 0 10px;
+    }
+    
+    .links {
+      gap: 10px;
+    }
+    
+    .footerBottom {
+      padding-top: 15px;
+      margin-top: 15px;
+    }
   }

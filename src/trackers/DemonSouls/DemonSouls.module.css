@@ -136,6 +136,22 @@ body {
     font-family: 'Mantinia Regular', Arial, sans-serif;
     border: 1px solid #fff;
 }
+
+.homeButton{
+    background-color: #2d4697; /* Cursed Blood */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-family: 'Mantinia Regular', Arial, sans-serif;
+    border: 1px solid #fff;
+    margin: 0;
+    display: block;
+    margin: 0 auto;
+}
 .resetButton {
     
     display: block;
@@ -307,4 +323,8 @@ body {
 .titleItems {
     display: flex;
     flex-direction: column;
+}
+
+.homeButton:hover{
+    background-color: #505e8d;
 }
