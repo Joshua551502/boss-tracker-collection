@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/boss-tracker-collection/static/css/main.0605fdec.css",
-    "main.js": "/boss-tracker-collection/static/js/main.32ef1b0d.js",
+    "main.css": "/boss-tracker-collection/static/css/main.bfb93f3f.css",
+    "main.js": "/boss-tracker-collection/static/js/main.e855b8ca.js",
     "static/js/453.52218dd5.chunk.js": "/boss-tracker-collection/static/js/453.52218dd5.chunk.js",
     "static/media/armored_spider.jpg": "/boss-tracker-collection/static/media/armored_spider.c0ef6960c02921a037cf.jpg",
     "static/media/moonlight_butterfly.jpg": "/boss-tracker-collection/static/media/moonlight_butterfly.cb376571bf188ec56643.jpg",
@@ -201,7 +201,6 @@
     "static/media/orphan_of_kos.jpg": "/boss-tracker-collection/static/media/orphan_of_kos.ff1b319bacf3fb6043d4.jpg",
     "static/media/shadows_of_yharnam.jpg": "/boss-tracker-collection/static/media/shadows_of_yharnam.05bef8c612c114e733d4.jpg",
     "static/media/lady_maria.jpg": "/boss-tracker-collection/static/media/lady_maria.cea5a7898321bd31ce1f.jpg",
-    "static/media/githublogohover.png": "/boss-tracker-collection/static/media/githublogohover.f4e0a32fd5467847c6ad.png",
     "static/media/stray_demon.jpg": "/boss-tracker-collection/static/media/stray_demon.7f5a1b8ca0d97732c86c.jpg",
     "static/media/githublogo.png": "/boss-tracker-collection/static/media/githublogo.294761a23003d373390e.png",
     "static/media/bed_of_chaos.jpg": "/boss-tracker-collection/static/media/bed_of_chaos.622aa38676de8e2a42dc.jpg",
@@ -227,12 +226,12 @@
     "static/media/vanguard.jpg": "/boss-tracker-collection/static/media/vanguard.75e1d0ebfbe2e0a99892.jpg",
     "static/media/gehrman.jpg": "/boss-tracker-collection/static/media/gehrman.6310bbf6753b80dfb79e.jpg",
     "index.html": "/boss-tracker-collection/index.html",
-    "main.0605fdec.css.map": "/boss-tracker-collection/static/css/main.0605fdec.css.map",
-    "main.32ef1b0d.js.map": "/boss-tracker-collection/static/js/main.32ef1b0d.js.map",
+    "main.bfb93f3f.css.map": "/boss-tracker-collection/static/css/main.bfb93f3f.css.map",
+    "main.e855b8ca.js.map": "/boss-tracker-collection/static/js/main.e855b8ca.js.map",
     "453.52218dd5.chunk.js.map": "/boss-tracker-collection/static/js/453.52218dd5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0605fdec.css",
-    "static/js/main.32ef1b0d.js"
+    "static/css/main.bfb93f3f.css",
+    "static/js/main.e855b8ca.js"
   ]
 }
