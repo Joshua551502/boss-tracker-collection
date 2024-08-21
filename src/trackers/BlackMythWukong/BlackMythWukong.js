@@ -473,7 +473,7 @@ const BlackMythWukong = () => {
 // Export the progress calculation for use in the main page
 export const blackMythWukongProgress = () => {
   const storedDefeated = JSON.parse(
-    Cookies.get("BlackMythWukongDefeatedBosses") || "[]"
+    Cookies.get("blackMythWukongDefeatedBosses") || "[]"
   );
   const totalBosses = bosses.length;
   return (storedDefeated.length / totalBosses) * 100;
