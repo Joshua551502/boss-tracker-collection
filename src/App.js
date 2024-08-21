@@ -12,7 +12,7 @@ import EldenRing from "./trackers/EldenRing/EldenRing";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/boss-tracker-collection">
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/demon-souls" element={<DemonSouls />} />
@@ -29,3 +29,6 @@ function App() {
 }
 
 export default App;
+
+//npm run build
+//npm run deploy
