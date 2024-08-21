@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/boss-tracker-collection/static/css/main.6cf54bde.css",
-    "main.js": "/boss-tracker-collection/static/js/main.e855b8ca.js",
+    "main.css": "/boss-tracker-collection/static/css/main.2fc9c91f.css",
+    "main.js": "/boss-tracker-collection/static/js/main.030f6813.js",
     "static/js/453.52218dd5.chunk.js": "/boss-tracker-collection/static/js/453.52218dd5.chunk.js",
     "static/media/armored_spider.jpg": "/boss-tracker-collection/static/media/armored_spider.c0ef6960c02921a037cf.jpg",
     "static/media/moonlight_butterfly.jpg": "/boss-tracker-collection/static/media/moonlight_butterfly.cb376571bf188ec56643.jpg",
@@ -226,12 +226,12 @@
     "static/media/vanguard.jpg": "/boss-tracker-collection/static/media/vanguard.75e1d0ebfbe2e0a99892.jpg",
     "static/media/gehrman.jpg": "/boss-tracker-collection/static/media/gehrman.6310bbf6753b80dfb79e.jpg",
     "index.html": "/boss-tracker-collection/index.html",
-    "main.6cf54bde.css.map": "/boss-tracker-collection/static/css/main.6cf54bde.css.map",
-    "main.e855b8ca.js.map": "/boss-tracker-collection/static/js/main.e855b8ca.js.map",
+    "main.2fc9c91f.css.map": "/boss-tracker-collection/static/css/main.2fc9c91f.css.map",
+    "main.030f6813.js.map": "/boss-tracker-collection/static/js/main.030f6813.js.map",
     "453.52218dd5.chunk.js.map": "/boss-tracker-collection/static/js/453.52218dd5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6cf54bde.css",
-    "static/js/main.e855b8ca.js"
+    "static/css/main.2fc9c91f.css",
+    "static/js/main.030f6813.js"
   ]
 }
