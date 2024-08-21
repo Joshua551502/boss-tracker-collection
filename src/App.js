@@ -9,6 +9,7 @@ import DarkSoulsIII from "./trackers/DarkSoulsIII/DarkSoulsIII";
 import Sekiro from "./trackers/Sekiro/Sekiro";
 import LiesOfP from "./trackers/LiesOfP/LiesOfP";
 import EldenRing from "./trackers/EldenRing/EldenRing";
+import BlackMythWukong from "./trackers/BlackMythWukong/BlackMythWukong";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/sekiro" element={<Sekiro />} />
         <Route path="/lies-of-p" element={<LiesOfP />} />
         <Route path="/elden-ring" element={<EldenRing />} />
+        <Route path="/black-myth-wukong" element={<BlackMythWukong />} />
       </Routes>
     </Router>
   );

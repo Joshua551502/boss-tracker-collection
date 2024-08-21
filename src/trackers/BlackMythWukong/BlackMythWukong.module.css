@@ -6,32 +6,32 @@
 }
 
 @font-face {
-    font-family: 'Bernhard';
-    src: url('../../assets/fonts/DemonSouls/Bernhard\ Modern\ BT.ttf') format('opentype');
+    font-family: 'Wukong';
+    src: url('../../assets/fonts/BlackMythWukong/wukong.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 body {
-    background-color: #0a0a0e; /* Abyssal Midnight */
-    color: #e0dacd; /* Pale Phantom */
-    font-family: 'BernhardBold', Arial, sans-serif;
+    background-color: #1c1b29; /* Twilight Indigo */
+    color: #f8f3e1; /* Moonlit Ivory */
+    font-family: 'Wukong', Arial, sans-serif;
 }
 
 .container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #282a36; /* Obsidian */
+    background-color: #2e2d3b; /* Mystic Charcoal */
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-    font-family: 'Bernhard', Arial, sans-serif;
+    font-family: 'Wukong', Arial, sans-serif;
 }
 
 .title {
     text-align: center;
-    color: #cda966; /* Royal Gold */
-    font-family: 'BernhardBold', Arial, sans-serif;
+    color: #e5c07b; /* Enchanted Gold */
+    font-family: 'Wukong', Arial, sans-serif;
 }
 
 .bossList {
@@ -44,18 +44,18 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #514839; /* Worn Bronze */
+    border-bottom: 1px solid #464357; /* Ancient Silver */
     transition: background-color 0.2s;
     cursor: pointer;
 }
 
 .bossItem.defeated {
-    background-color: #3d4149; /* Ashen Gray */
-    color: #cda966; /* Royal Gold */
+    background-color: #35344a; /* Phantom Shadow */
+    color: #e5c07b; /* Enchanted Gold */
 }
 
 .bossItem:hover {
-    background-color: #634d3c; /* Embered Brown */
+    background-color: #736f85; /* Arcane Mist */
 }
 
 .bossName {
@@ -70,7 +70,7 @@ body {
     margin-right: 10px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #514839; /* Worn Bronze */
+    border: 2px solid #464357; /* Ancient Silver */
 }
 
 .buttonGroup {
@@ -81,9 +81,9 @@ body {
 .countInput {
     width: 40px;
     text-align: center;
-    background-color: #282a36; /* Obsidian */
-    color: #e0dacd; /* Pale Phantom */
-    border: 1px solid #514839; /* Worn Bronze */
+    background-color: #2e2d3b; /* Mystic Charcoal */
+    color: #f8f3e1; /* Moonlit Ivory */
+    border: 1px solid #464357; /* Ancient Silver */
     border-radius: 5px;
     margin: 0 5px;
     padding: 5px;
@@ -97,9 +97,9 @@ body {
 }
 
 .button {
-    background-color: #cda966; /* Royal Gold */
+    background-color: #e5c07b; /* Enchanted Gold */
     border: none;
-    color: #000;
+    color: #1c1b29; /* Twilight Indigo */
     padding: 5px 10px;
     margin: 0 5px;
     cursor: pointer;
@@ -108,7 +108,7 @@ body {
 }
 
 .button:hover {
-    background-color: #dcb278; /* Brighter Gold */
+    background-color: #f1d08a; /* Brighter Gold */
 }
 
 .button:disabled {
@@ -122,10 +122,9 @@ body {
  
 }
 
-
 .resetButton,
 .resetButton2 {
-    background-color: #962d2d; /* Cursed Blood */
+    background-color: #a54242; /* Crimson Curse */
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -134,11 +133,11 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s;
     font-family: 'Mantinia Regular', Arial, sans-serif;
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
 }
 
-.homeButton{
-    background-color: #2d4697; /* Cursed Blood */
+.homeButton {
+    background-color: #3b598d; /* Sapphire Depths */
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -147,27 +146,28 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s;
     font-family: 'Mantinia Regular', Arial, sans-serif;
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
     margin: 0;
     display: block;
     margin: 0 auto;
     width: 100%;
 }
+
 .resetButton {
-    
     display: block;
     margin: 0 auto;
 }
+
 .resetButton:hover,
 .resetButton2:hover {
-    background-color: #b73838; /* Darker Blood */
+    background-color: #bf5656; /* Blood Omen */
 }
 
 .immortalitySeveredButton,
 .victoryAchievedButton {
-    background-color: #cda966; /* Royal Gold */
+    background-color: #e5c07b; /* Enchanted Gold */
     border: none;
-    color: #fff;
+    color: #1c1b29; /* Twilight Indigo */
     padding: 10px 20px;
     margin: 20px 0 -5px;
     cursor: pointer;
@@ -177,12 +177,12 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
 }
 
 .immortalitySeveredButton:hover,
 .victoryAchievedButton:hover {
-    background-color: #dcb278; /* Brighter Gold */
+    background-color: #f1d08a; /* Brighter Gold */
 }
 
 .modal {
@@ -191,7 +191,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(28, 27, 41, 0.85); /* Twilight Indigo */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -210,14 +210,14 @@ body {
 }
 
 .modalContent {
-    background: #282a36; /* Obsidian */
+    background: #2e2d3b; /* Mystic Charcoal */
     padding: 30px;
     border-radius: 10px;
     text-align: center;
     position: relative;
     width: 80%;
     max-width: 600px;
-    color: #cda966; /* Royal Gold */
+    color: #e5c07b; /* Enchanted Gold */
 }
 
 .modalBossImage {
@@ -233,7 +233,7 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    color: #e0dacd; /* Pale Phantom */
+    color: #f8f3e1; /* Moonlit Ivory */
     font-size: 24px;
     cursor: pointer;
 }
@@ -241,7 +241,7 @@ body {
 .modal .button {
     background-color: transparent;
     border: none;
-    color: #e0dacd; /* Pale Phantom */
+    color: #f8f3e1; /* Moonlit Ivory */
     padding: 10px;
     font-size: 2em;
     cursor: pointer;
@@ -249,7 +249,7 @@ body {
 }
 
 .modal .button:hover {
-    color: #cda966; /* Royal Gold */
+    color: #e5c07b; /* Enchanted Gold */
 }
 
 .modal .buttonGroup {
@@ -270,9 +270,9 @@ body {
 }
 
 .confirmationModal .modalButton {
-    background-color: #cda966; /* Royal Gold */
+    background-color: #e5c07b; /* Enchanted Gold */
     border: none;
-    color: #000;
+    color: #1c1b29; /* Twilight Indigo */
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
@@ -281,7 +281,7 @@ body {
 }
 
 .confirmationModal .modalButton:hover {
-    background-color: #dcb278; /* Brighter Gold */
+    background-color: #f1d08a; /* Brighter Gold */
 }
 
 .countInput {
@@ -289,7 +289,7 @@ body {
 }
 
 .descriptionText {
-    color: #e0dacd; /* Pale Phantom */
+    color: #f8f3e1; /* Moonlit Ivory */
     margin-top: 10px;
     font-size: 0.8em;
     font-family: Arial, sans-serif;
@@ -299,11 +299,11 @@ body {
     text-align: center;
     margin: 20px 0;
     font-size: 1.2em;
-    color: #cda966; /* Royal Gold */
+    color: #e5c07b; /* Enchanted Gold */
 }
 
 .toggleButton {
-    background-color: #962d2d; /* Cursed Blood */
+    background-color: #a54242; /* Crimson Curse */
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -318,7 +318,7 @@ body {
 }
 
 .toggleButton:hover {
-    background-color: #b73838; /* Darker Blood */
+    background-color: #bf5656; /* Blood Omen */
 }
 
 .titleItems {
@@ -327,5 +327,5 @@ body {
 }
 
 .homeButton:hover{
-    background-color: #505e8d;
+    background-color: #495c8d; /* Twilight Sapphire */
 }

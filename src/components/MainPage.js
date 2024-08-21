@@ -10,6 +10,7 @@ import { darkSoulsIProgress } from "../trackers/DarkSoulsI/DarkSoulsI";
 import { darkSoulsIIProgress } from "../trackers/DarkSoulsII/DarkSoulsII";
 import { BloodborneProgress } from "../trackers/Bloodborne/Bloodborne";
 import { darkSoulsIIIProgress } from "../trackers/DarkSoulsIII/DarkSoulsIII";
+import { blackMythWukongProgress } from "../trackers/BlackMythWukong/BlackMythWukong";
 
 import DemonSouls from "../assets/images/DemonSouls/demonsouls.png";
 import DarkSoulsI from "../assets/images/DarkSoulsI/darksoulsi.png";
@@ -19,11 +20,13 @@ import DarkSoulsIII from "@darkSoulsIIIImages/darksoulsiii.png";
 import Sekiro from "@sekiroImages/sekiro.png";
 import EldenRing from "@eldenRingImages/eldenring.png";
 import LiesOfP from "@liesOfPImages/liesofp.png";
+import BlackMythWukong from "../assets/images/BlackMythWukong/black-myth-wukong.jpg";
 import GameIcon from "../assets/images/MainPage/Group.png";
 import fromSoftwareLogo from "../assets/images/MainPage/fromsoft.png";
 import Neowiz from "../assets/images/MainPage/neowiz.png";
 import SoulTrackerLogo from "../assets/images/MainPage/soul-tracker-logo.png";
 import SearchIcon from "../assets/images/MainPage/search-icon.png";
+import GameScienceLogo from "../assets/images/MainPage/gamesciencelogo.png"
 import Moon from "../assets/images/MainPage/moon.png";
 import Sword from "../assets/images/MainPage/sword.png";
 import Sheild from "../assets/images/MainPage/sheild.png";
@@ -42,6 +45,7 @@ const MainPage = () => {
   const [DarkSoulsIIIProgressValue, setDarkSoulsIIIProgressValue] = useState(0);
   const [DarkSoulsIIProgressValue, setDarkSoulsIIProgressValue] = useState(0);
   const [DarkSoulsIProgressValue, setDarkSoulsIProgressValue] = useState(0);
+  const [BlackMythWukongProgressValue, setBlackMythWukongProgressValue] = useState(0);
 
   useEffect(() => {
     setLiesOfPProgressValue(liesOfPProgress());
@@ -52,6 +56,7 @@ const MainPage = () => {
     setDarkSoulsIIIProgressValue(darkSoulsIIIProgress());
     setBloodborneProgressValue(BloodborneProgress());
     setDemonSoulsProgressValue(demonSoulsProgress());
+    setBlackMythWukongProgressValue(blackMythWukongProgress());
   }, []);
 
   const trackers = [
@@ -134,6 +139,16 @@ const MainPage = () => {
       mediaType: "Game",
       company: "Neowiz Games",
       companyLogo: Neowiz,
+    },
+    {
+      title: "Black Myth: Wukong",
+      image: BlackMythWukong,
+      releaseDate: "August 19, 2024",
+      progress: BlackMythWukongProgressValue,
+      link: "/black-myth-wukong",
+      mediaType: "Game",
+      company: "Game Science",
+      companyLogo: GameScienceLogo,
     },
   ];
 
